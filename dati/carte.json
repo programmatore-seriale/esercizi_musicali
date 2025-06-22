@@ -1,0 +1,22 @@
+[
+{
+        "image": "../immagini/semicroma.png",
+        "name": "Semicroma"
+    },
+    {
+        "image": "../immagini/croma.png",
+        "name": "Croma"
+    },
+    {
+        "image": "../immagini/semiminima.png",
+        "name": "Semiminima"
+    },
+    {
+        "image": "../immagini/minima.png",
+        "name": "Minima"
+    },
+    {
+        "image": "../immagini/semibreve.png",
+        "name": "Semibreve"
+    }
+]

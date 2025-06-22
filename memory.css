@@ -1,0 +1,88 @@
+body {
+    min-height: 100vh;
+    min-width: 100vh;
+    background-color: black;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 50px;
+}
+
+p {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+}
+
+.actions button {
+    padding: 8px 16px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: #27ae60;
+    color: white;
+    cursor: pointer;
+}
+
+.grid-container {
+    display: grid;
+    justify-content: center;
+    grid-gap: 16px;
+    grid-template-columns: repeat(6, 140px);
+    grid-template-rows: repeat(2, calc(140px / 2 * 3));
+    perspective: 1000px;
+}
+
+.card {
+    height: calc(140px / 2 * 3);
+    width: 140px;
+    border-radius: 10px;
+    background-color: white;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    transform: rotateY(0deg);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.front-image {
+    font-size: 50px;
+}
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.card .front {
+    background-color: white;
+    transform: rotateY(180deg);
+}
+
+.card .back {
+    background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='30' height='60' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240,6.7%,17.6%,1)'/><path d='M9.27 0 0 6.48v23.49l15 10V60h5.16L30 53.46V29.97L15 19.96V0Zm5.83 0L30 9.9V6.48L20.26 0ZM15 23.4l9.9 6.57-9.9 6.58-9.9-6.58ZM0 50.1v3.36l9.22 6.48.1.06h5.6l-.1-.06z'  stroke-width='1' stroke='none' fill='hsla(47,80.9%,61%,1)'/><path d='M0 0v3.4L5 0zm24.48 0L30 3.4V0zM15 26.2l-5.68 3.77L15 33.73l5.68-3.76Zm15 30.2L24.48 60H30Zm-30 0V60h5z'  stroke-width='1' stroke='none' fill='hsla(4.1,89.6%,58.4%,1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
+    background-position: center center;
+    background-size: cover;
+    transform: rotateY(0deg);
+}
