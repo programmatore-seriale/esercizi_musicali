@@ -2,17 +2,19 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>2048 - Gioco JavaScript</title>
-  <link rel="stylesheet" href="2048.css">
+  <title>16/4</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/f10920c79d.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <a href="index.html" class="home-link">
     <i class="fa-solid fa-house"></i>
   </a>
-  <h1>2048 in JavaScript</h1>
+  <h1>Il gioco dei sedici quarti</h1>
+  <div id="scoreBox" style="font-size: 2.5em; color: #27ae60; margin-bottom: 20px;">0</div>
   <div id="game"></div>
   <p id="status"></p>
+  <button id="restartButton" onclick="initGrid()">Riavvia</button>
   <script src="2048.js"></script>
 </body>
 </html>
