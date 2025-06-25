@@ -1,0 +1,46 @@
+body {
+  background: #faf8ef !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.fa-solid.fa-house{
+    font-size: 2em;
+    color: #776e65;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+canvas {
+  background: #faf8ef !important;
+  border: 2px solid #0f0 !important;
+  display: block;
+  margin: 0 auto;
+}
+
+#startBtn {
+    display: block;
+    margin: 20px auto 0 auto;
+    padding: 8px 16px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: #27ae60;
+    color: white;
+    cursor: pointer;
+}
+
+.canvas-container {
+  position: relative;
+  display: inline-block;
+}
+
+#scoreBox {
+  font-size: 4em;
+  color: #27ae60;
+  margin-bottom: 20px;
+  min-width: 120px;
+  text-align: center;
+}
