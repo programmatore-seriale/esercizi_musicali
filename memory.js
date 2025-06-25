@@ -1,98 +1,76 @@
-const gridContainer = document.querySelector('.grid-container');
-const scoreElement = document.querySelector('.score');
-let firstCard = null;
-let secondCard = null;
-let lockBoard = false;
-let score = 0;
 
-const imageCards = [
-    { image: "../immagini/semicroma.png", name: "Semicroma" },
-    { image: "../immagini/croma.png", name: "Croma" },
-    { image: "../immagini/semiminima.png", name: "Semiminima" },
-    { image: "../immagini/minima.png", name: "Minima" },
-    { image: "../immagini/semibreve.png", name: "Semibreve" }
+const pairs = [
+    { image: "immagini/semicroma.png", pairId: "semicroma" },
+    { image: "immagini/semicroma_scritta.png", pairId: "semicroma" },
+    { image: "immagini/croma.png", pairId: "croma" },
+    { image: "immagini/croma_scritta.png", pairId: "croma" },
+    { image: "immagini/minima.png", pairId: "minima" },
+    { image: "immagini/minima_scritta.png", pairId: "minima" },
+    { image: "immagini/semiminima.png", pairId: "semiminima" },
+    { image: "immagini/semiminima_scritta.png", pairId: "semiminima" },
+    { image: "immagini/semibreve.png", pairId: "semibreve" },
+    { image: "immagini/semibreve_scritta.png", pairId: "semibreve" },
+    { image: "immagini/breve.png", pairId: "breve" },
+    { image: "immagini/breve_scritta.png", pairId: "breve" }
 ];
 
-const cards = [...imageCards, ...imageCards]; // duplico le coppie
+let cards = [...pairs];
+cards.sort(() => 0.5 - Math.random());
 
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
+const grid = document.querySelector(".grid-container");
+const scoreDisplay = document.querySelector(".score");
+let flippedCards = [];
+let matchedPairs = 0;
 
-function createCard({ image, name }) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.dataset.name = name;
+function createBoard() {
+    grid.innerHTML = "";
+    matchedPairs = 0;
+    scoreDisplay.textContent = 0;
 
-    const front = document.createElement('div');
-    front.classList.add('front');
-    const img = document.createElement('img');
-    img.classList.add('front-image');
-    img.src = image;
-    img.alt = name;
-    front.appendChild(img);
+    cards.forEach(({ image, pairId }) => {
+        console.log("Immagine caricata:", image);
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.pairId = pairId;
 
-    const back = document.createElement('div');
-    back.classList.add('back');
+        card.innerHTML = `
+            <div class="front"><img src="${image}" class="front-image" /></div>
+            <div class="back"></div>
+        `;
 
-    card.appendChild(front);
-    card.appendChild(back);
-    card.addEventListener('click', handleCardClick);
-
-    return card;
-}
-
-function handleCardClick(e) {
-    const clickedCard = e.currentTarget;
-
-    if (lockBoard || clickedCard === firstCard || clickedCard.classList.contains('matched')) return;
-
-    clickedCard.classList.add('flipped');
-
-    if (!firstCard) {
-        firstCard = clickedCard;
-        return;
-    }
-
-    secondCard = clickedCard;
-    lockBoard = true;
-
-    if (firstCard.dataset.name === secondCard.dataset.name) {
-        firstCard.classList.add('matched');
-        secondCard.classList.add('matched');
-        score++;
-        updateScore();
-        resetSelection();
-    } else {
-        setTimeout(() => {
-            firstCard.classList.remove('flipped');
-            secondCard.classList.remove('flipped');
-            resetSelection();
-        }, 1000);
-    }
-}
-
-function updateScore() {
-    scoreElement.textContent = score;
-}
-
-function resetSelection() {
-    [firstCard, secondCard] = [null, null];
-    lockBoard = false;
-}
-
-function restart() {
-    gridContainer.innerHTML = '';
-    score = 0;
-    updateScore();
-    shuffle(cards);
-    cards.forEach(cardData => {
-        const card = createCard(cardData);
-        gridContainer.appendChild(card);
+        card.addEventListener("click", () => flipCard(card));
+        grid.appendChild(card);
     });
 }
 
-restart();
+function flipCard(card) {
+    if (card.classList.contains("flipped") || flippedCards.length === 2) return;
+
+    card.classList.add("flipped");
+    flippedCards.push(card);
+
+    if (flippedCards.length === 2) {
+        setTimeout(checkForMatch, 1000);
+    }
+}
+
+function checkForMatch() {
+    const [first, second] = flippedCards;
+
+    if (first.dataset.pairId === second.dataset.pairId) {
+        matchedPairs++;
+        scoreDisplay.textContent = matchedPairs;
+        flippedCards = [];
+    } else {
+        first.classList.remove("flipped");
+        second.classList.remove("flipped");
+        flippedCards = [];
+    }
+}
+
+function restart() {
+    cards.sort(() => 0.5 - Math.random());
+    createBoard();
+}
+
+window.onload = createBoard;
