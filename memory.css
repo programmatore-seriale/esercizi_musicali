@@ -57,7 +57,11 @@ p {
 }
 
 .front-image {
-    font-size: 50px;
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    /* Rimuovi o sovrascrivi il font-size se non serve */
 }
 
 .front,
@@ -78,6 +82,7 @@ p {
 .card .front {
     background-color: white;
     transform: rotateY(180deg);
+    overflow: hidden; /* Importante per evitare che l'immagine esca */
 }
 
 .card .back {
