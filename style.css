@@ -192,6 +192,58 @@ canvas {
     min-width: 120px;
     text-align: center;
 }
+/* --- Quiz --- */
+.intestazione {
+    display: block;
+    margin: 30px auto 10px auto;
+    max-width: 220px;    
+}
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+  width: 60vw;         /* Larghezza pari al 60% della larghezza dello schermo */
+  max-width: 400px;    /* Non superare mai i 400px */
+  height: auto;        /* Altezza proporzionale */
+  flex-shrink: 0;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.slides img:not(:last-child) {
+  margin-right: 16px;
+}
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 2rem;
+  padding: 0 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.nav.left {
+  left: 0;
+}
+
+.nav.right {
+  right: 0;
+}
 
 
 /* --- 2048 --- */
