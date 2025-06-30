@@ -192,17 +192,17 @@ canvas {
     min-width: 120px;
     text-align: center;
 }
-/* --- Quiz --- */
+/* --- Quiz Home --- */
 .intestazione {
     display: block;
-    margin: 30px auto 10px auto;
+    margin: 0 auto 0 auto;
     max-width: 220px;    
 }
 .slider {
   position: relative;
   width: 100%;
   max-width: 1000px;
-  margin: auto;
+  margin: 10px auto 0 auto; /* margine superiore ridotto a 10px */
   overflow: hidden;
   border-radius: 12px;
 }
@@ -215,7 +215,7 @@ canvas {
 .slides img {
   width: 60vw;         /* Larghezza pari al 60% della larghezza dello schermo */
   max-width: 400px;    /* Non superare mai i 400px */
-  height: 350px;      /* Altezza fissa per tutte le immagini */
+  height: 40vh;        /* Altezza fissa per tutte le immagini */
   flex-shrink: 0;
   object-fit: cover;  /* Ritaglia e centra l'immagine */
   margin: 0 auto;
@@ -255,6 +255,64 @@ canvas {
 
 .nav.right {
   right: 0;
+}
+
+/* --- QUIZ test --- */
+
+.quiz-container {
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 15px;
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px #000;
+}
+
+.quiz-container img {
+  width: 40%;
+  border-radius: 10px;
+}
+
+.question {
+  margin: 20px 0;
+  font-size: 18px;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.answer-button {
+  padding: 15px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.answer-button:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.red { background-color: #8B0000; color: white; }
+.red:hover { background-color: #ff0000 !important; }
+.blue { background-color: #001F5B; color: white; }
+.blue:hover { background-color: #0055ff !important; }
+.orange { background-color: #D2691E; color: white; }
+.orange:hover { background-color: #ff6a00 !important; }
+.green { background-color: #006400; color: white; }
+.green:hover { background-color: #00b100 !important; }
+
+.result {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 

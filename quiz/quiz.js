@@ -26,3 +26,18 @@ function moveSlide(direction) {
   index = newIndex;
   slides.style.transform = `translateX(-${translate}px)`;
 }
+document.querySelectorAll('.answer-button').forEach(button => {
+  button.addEventListener('click', () => {
+    const isCorrect = button.getAttribute('data-correct') === "true";
+    const explanation = button.getAttribute('explanation');
+    const resultDiv = document.getElementById('result');
+
+    if (isCorrect) {
+      resultDiv.textContent = `✔️ Corretto! ${explanation}`;
+      resultDiv.style.color = "lightgreen";
+    } else {
+      resultDiv.textContent = `❌ Risposta sbagliata. ${explanation}`;
+      resultDiv.style.color = "red";
+    }
+  });
+});

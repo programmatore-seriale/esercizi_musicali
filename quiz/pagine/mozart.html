@@ -1,11 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mozart</title>
+  <meta charset="UTF-8">
+  <title>Mozart</title>
+    <!-- Da inserire nel head di tutti i file del quiz -->
+    <link rel="stylesheet" href="/style.css"> <!-- Per applicare lo stile CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <!-- Per far funzionare l'icona di home -->
+    <link rel="icon" type="image/png" href="/immagini/logo.png"> <!-- Icona del sito -->
+    <!-- ############################################# -->
 </head>
 <body>
-    
+    <!-- Intestazione da usare in tutte le pagine del quiz -->
+    <a href="/index.html" class="home-link">
+        <i class="fa-solid fa-house"></i>
+    </a>
+    <a href="/quiz/home.html" class="quiz-link">
+        <img src="/immagini/intestazione.png" alt="Logo Esercizi Musicali" class="intestazione">
+    </a>
+    <!-- ################################################# -->
+    <div class="quiz-container">
+        <img src="/immagini/mozart.jpg" alt="Mozart">
+        <div class="question">
+            Ascolta questo file audio, che brano, tra quelli che abbiano ascoltato in classe ti sembra di riconoscere?
+        </div>
+        <div class="answers">
+            <button class="answer-button red" data-correct="false"
+                explanation="Questa è un'opera molto famosa di Mozart, ma non è quella che abbiamo ascoltato.">
+                Sinfonia n. 40
+            </button>
+            <button class="answer-button blue" data-correct="false"
+                explanation="Questa è un'opera molto famosa di Mozart, ma non è quella che abbiamo ascoltato.">
+                Il flauto magico
+            </button>
+            <button class="answer-button orange" data-correct="true"
+                explanation="Bravo! Infatti ne abbiamo proprio ascoltato l'ultimo movimento, durante il quale il compositore unisce tutti i temi precedentemente presentati">
+                Sinfonia n. 41 "Jupiter"
+            </button>
+            <button class="answer-button green" data-correct="false"
+                explanation="Questa è un'opera molto famosa di Mozart, ma non è quella che abbiamo ascoltato.">
+                Le nozze di Figaro
+            </button>
+        </div>
+        <div id="result" class="result"></div>
+    </div>
+    <!-- Anche lo script è uguale per tutte le pagine del quiz -->
+    <script src="/quiz/quiz.js"></script>
+    <!-- ##################################################### -->
 </body>
 </html>
