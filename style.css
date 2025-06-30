@@ -215,13 +215,25 @@ canvas {
 .slides img {
   width: 60vw;         /* Larghezza pari al 60% della larghezza dello schermo */
   max-width: 400px;    /* Non superare mai i 400px */
-  height: auto;        /* Altezza proporzionale */
+  height: 350px;      /* Altezza fissa per tutte le immagini */
   flex-shrink: 0;
-  object-fit: cover;
+  object-fit: cover;  /* Ritaglia e centra l'immagine */
   margin: 0 auto;
+  border-radius: 18px; /* Arrotonda gli angoli delle immagini */
 }
 
-.slides img:not(:last-child) {
+.slides a {
+  flex: 0 0 auto; /* Impedisce che gli elementi si restringano */
+  text-decoration: none;
+}
+
+.slides a:hover { /* Leggero effetto hover */
+  opacity: 0.8;
+  transform: scale(1.05);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.slides a:not(:last-child) {
   margin-right: 16px;
 }
 
