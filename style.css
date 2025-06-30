@@ -260,24 +260,48 @@ canvas {
 /* --- QUIZ test --- */
 
 .quiz-container {
-  background: rgba(0, 0, 0, 0.75);
-  border-radius: 15px;
-  max-width: 600px;
-  margin: 60px auto;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 0 10px #000;
-}
-
-.quiz-container img {
-  width: 40%;
-  border-radius: 10px;
+    background: #4c347c;
+    color: white;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 10px #000;
 }
 
 .question {
   margin: 20px 0;
   font-size: 18px;
 }
+
+.audio-image-container {
+    display: flex;
+    align-items: center;
+    gap: 24px; /* spazio tra immagine e audio */
+}
+
+.audio-image-container img {
+    display: block;
+    width: 10%;
+    height: auto;
+    border-radius: 18px;
+}
+
+.audio-img {
+    width: 120px;      /* o la dimensione che preferisci */
+    height: auto;
+    border-radius: 18px;
+    display: block;
+}
+
+.audio-inside {
+    width: 220px;      /* regola la larghezza dei controlli audio */
+    min-width: 120px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+}
+
 
 .answers {
   display: grid;

@@ -19,26 +19,36 @@
     </a>
     <!-- ################################################# -->
     <div class="quiz-container">
-        <img src="/immagini/mozart.jpg" alt="Mozart">
+        <div class="audio-image-container">
+            <img src="" alt="Mozart" class="audio-img" id="audio-img">
+            <audio controls class="audio-inside" id="audio-inside">
+                <source src="" type="audio/mpeg">
+                Il tuo browser non supporta l'audio HTML5.
+            </audio>
+        </div>
         <div class="question">
             Ascolta questo file audio, che brano, tra quelli che abbiano ascoltato in classe ti sembra di riconoscere?
         </div>
         <div class="answers">
-            <button class="answer-button red" data-correct="false"
-                explanation="Questa è un'opera molto famosa di Mozart, ma non è quella che abbiamo ascoltato.">
-                Sinfonia n. 40
+            <button class="answer-button red" id="answer-button-red"
+                data-correct=""
+                explanation="">
+                <!--Non cancellare la riga vuota-->
             </button>
-            <button class="answer-button blue" data-correct="false"
-                explanation="Questa è un'opera molto famosa di Mozart, ma non è quella che abbiamo ascoltato.">
-                Il flauto magico
+            <button class="answer-button blue" id="answer-button-blue"
+                data-correct=""
+                explanation="">
+                <!--Non cancellare la riga vuota-->
             </button>
-            <button class="answer-button orange" data-correct="true"
-                explanation="Bravo! Infatti ne abbiamo proprio ascoltato l'ultimo movimento, durante il quale il compositore unisce tutti i temi precedentemente presentati">
-                Sinfonia n. 41 "Jupiter"
+            <button class="answer-button orange" id="answer-button-orange"
+                data-correct=""
+                explanation="">
+                <!--Non cancellare la riga vuota-->
             </button>
-            <button class="answer-button green" data-correct="false"
-                explanation="Questa è un'opera molto famosa di Mozart, ma non è quella che abbiamo ascoltato.">
-                Le nozze di Figaro
+            <button class="answer-button green" id="answer-button-green"
+                data-correct=""
+                explanation="">
+                <!--Non cancellare la riga vuota-->
             </button>
         </div>
         <div id="result" class="result"></div>
