@@ -18,6 +18,11 @@
         <img src="/immagini/intestazione.png" alt="Logo Esercizi Musicali" class="intestazione">
     </a>
     <!-- ################################################# -->
+    <div class="score-container">
+        <h1 class="score" id="score">
+            
+        </h1>
+    </div>
     <div class="quiz-container">
         <div class="audio-image-container">
             <img src="" alt="Mozart" class="audio-img" id="audio-img">
@@ -49,6 +54,11 @@
                 data-correct=""
                 explanation="">
                 <!--Non cancellare la riga vuota-->
+            </button>
+        </div>
+        <div id="next-restart" class="next-restart">
+            <button id="next-button" class="next-button" onclick="nextRestart()">
+                Prossima domanda
             </button>
         </div>
         <div id="result" class="result"></div>
