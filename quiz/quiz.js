@@ -117,7 +117,7 @@ function generateQuestion(i) {
         this.classList.remove('wrong-answer');
         this.classList.add('right-answer');
       } else {
-        resultDiv.textContent = `❌ Risposta sbagliata. ${explanation}`;
+        resultDiv.textContent = `❌ Risposta sbagliata.`;
         resultDiv.style.color = "red";
       }
       buttons.forEach(btn => btn.disabled = true);
@@ -154,8 +154,7 @@ fetch('/quiz/questions.json')
     return response.json();
   })
   .then(data => {
-    const domande = data.storia;
-    domandeMozart = domande.filter(q => q.composer === "Mozart");
+    const domandeMozart = data.storia.mozart;
     images = domandeMozart.map(q => q.image);
     answers = domandeMozart.map(q => [
       q.audio,
