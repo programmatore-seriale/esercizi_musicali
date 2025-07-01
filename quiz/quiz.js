@@ -25,7 +25,8 @@ function moveSlide(direction) {
 
   index = newIndex;
   slides.style.transform = `translateX(-${translate}px)`;
-}/* ######################## */
+}
+/* ######################## */
 
 /* Codice del quiz */
 /* Qui dichiariamo le costanti per manipolare gli elementi HTML */
@@ -40,26 +41,6 @@ const buttons = [answer_button_red, answer_button_blue, answer_button_orange, an
 const next_button = document.getElementById('next-button');
 const resultDiv = document.getElementById('result');
 /* ########################################################### */
-
-/* Qui mettiamo risposte ed immagini per generare i vari quiz */
-images = [
-  "https://images.pexels.com/photos/210877/pexels-photo-210877.jpeg",
-  "https://images.pexels.com/photos/13385066/pexels-photo-13385066.jpeg",
-  "https://images.pexels.com/photos/29689573/pexels-photo-29689573.jpeg",
-  "https://images.pexels.com/photos/13036786/pexels-photo-13036786.jpeg",
-  "https://images.pexels.com/photos/32392920/pexels-photo-32392920.jpeg"
-]
-answers = [
-  ["/registrazioni/lacrimosa.mp3",
-  "Messa di requiem","Bravo! Infatti, quella che stai sentendo è il celebre tema de \"Lacrimosa\""],
-  ["/registrazioni/der_holle_rache.mp3",
-  "Il flauto magico","Bravo! Infatti puoi riconoscere la celebre aria \"Der Hölle Rache kocht in meinem Herzen\""],
-  ["/registrazioni/non_piu_andrai.mp3",
-  "Le nozze di Figaro","Bravo! Le nozze di figaro contengono una delle arie d'opera più famose: \"Non più andrai farfallone amoroso\""],
-  ["/registrazioni/sinfonia_40.mp3",
-  "Sinfonia n.40", "Bravo! Del resto l'incipit di questo brano è semplicemente celeberrimo"]
-]
-/* #################################################################### */
 
 /* Dichiariamo una serie di variabili di ambiente e le impostiamo al valore inziale con la funzione environment*/
 let array = [];
@@ -162,6 +143,27 @@ function nextRestart(){
   buttons.forEach(btn => btn.classList.remove('wrong-answer'));
 }
 /*#####################################################*/
-// All'avvio del quiz
-environment();
-generateQuestion(currentQuestion);
+
+
+/* Manipolazione file JSON ed effettiva esecuzione */
+let images = [];
+let answers = [];
+fetch('/quiz/questions.json')
+  .then(response => {
+    if (!response.ok) throw new Error("Errore nel caricamento del file JSON");
+    return response.json();
+  })
+  .then(data => {
+    const domande = data.storia;
+    domandeMozart = domande.filter(q => q.composer === "Mozart");
+    images = domandeMozart.map(q => q.image);
+    answers = domandeMozart.map(q => [
+      q.audio,
+      q.correct,
+      q.explanation
+    ]);
+    environment();
+    generateQuestion(currentQuestion);
+  })
+  .catch(err => console.error("Errore:", err));
+/* ############################################################################################## */
