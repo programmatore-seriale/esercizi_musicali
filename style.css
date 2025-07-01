@@ -279,22 +279,21 @@ canvas {
 
 .audio-image-container {
     display: flex;
-    align-items: center;
-    gap: 24px; /* spazio tra immagine e audio */
-}
-
-.audio-image-container img {
-    display: block;
-    width: 10%;
-    height: auto;
-    border-radius: 18px;
+    flex-direction: column;
+    align-items: center; /* centra tutto in orizzontale */
+    gap: 16px;           /* spazio tra immagine e audio */
 }
 
 .audio-img {
-    width: 120px;      /* o la dimensione che preferisci */
-    height: auto;
-    border-radius: 18px;
     display: block;
+    margin: 0 auto 20px auto;
+    max-width: 400px;   /* o la dimensione che preferisci */
+    width: 80vw;        /* responsivo: 80% della larghezza viewport */
+    max-height: 200px;
+    height: auto;
+    border-radius: 16px; /* opzionale: angoli arrotondati */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15); /* opzionale: ombra */
+    object-fit: cover;
 }
 
 .audio-inside {
@@ -334,7 +333,10 @@ canvas {
 .orange:hover { background-color: #ff6a00 !important; }
 .green { background-color: #006400; color: white; }
 .green:hover { background-color: #00b100 !important; }
-
+.right-answer{background-color: #00b100 !important; color: white !important;}
+.right-answer:hover{background-color: #00b100 !important; color: white !important;}
+.wrong-answer{background-color: #b10000 !important; color: white !important; opacity: 0.3;}
+.wrong-answer:hover{background-color: #b10000 !important; color: white !important; opacity: 0.3;}
 .next-restart button{
     background-color: #14123a;
     margin-top: 20px;

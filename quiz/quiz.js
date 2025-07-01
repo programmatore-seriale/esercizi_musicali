@@ -51,17 +51,13 @@ images = [
 ]
 answers = [
   ["/registrazioni/lacrimosa.mp3",
-    ["Sinfonia n. 40",false,"Abbiamo ascoltato questo brano di Mozart, ma non è quello che stai sentendo."],
-    ["Il flauto magico",false,"Abbiamo ascoltato questo brano di Mozart, ma non è quello che stai sentendo."],
-    ["Messa di requiem",true,"Bravo! Infatti, quella che stai sentendo è il celebre tema de \"Lacrimosa\""],
-    ["Le nozze di figaro",false,"Abbiamo ascoltato questo brano di Mozart, ma non è quello che stai sentendo."]
-  ],
+  "Messa di requiem","Bravo! Infatti, quella che stai sentendo è il celebre tema de \"Lacrimosa\""],
   ["/registrazioni/der_holle_rache.mp3",
-    ["Sinfonia n. 40",false,"Abbiamo ascoltato questo brano di Mozart, ma non è quello che stai sentendo."],
-    ["Il flauto magico",true,"Bravo! Infatti puoi riconoscere la celebre aria \"Der Hölle Rache kocht in meinem Herzen\""],
-    ["Messa di requiem",false,"Abbiamo ascoltato questo brano di Mozart, ma non è quello che stai sentendo."],
-    ["Le nozze di figaro",false,"Abbiamo ascoltato questo brano di Mozart, ma non è quello che stai sentendo."]
-  ]
+  "Il flauto magico","Bravo! Infatti puoi riconoscere la celebre aria \"Der Hölle Rache kocht in meinem Herzen\""],
+  ["/registrazioni/non_piu_andrai.mp3",
+  "Le nozze di Figaro","Bravo! Le nozze di figaro contengono una delle arie d'opera più famose: \"Non più andrai farfallone amoroso\""],
+  ["/registrazioni/sinfonia_40.mp3",
+  "Sinfonia n.40", "Bravo! Del resto l'incipit di questo brano è semplicemente celeberrimo"]
 ]
 /* #################################################################### */
 
@@ -78,59 +74,82 @@ function environment(){
   }
   i = 0;
   currentQuestion = 0;
-  let correctAnswers = 0;
+  correctAnswers = 0;
   buttons.forEach(btn => btn.disabled = false); // Abilita i bottoni dopo la risposta
   next_button.textContent = "Prossima domanda";
   scoreText.textContent = "Buona fortuna!";
+  array = array.sort(() => Math.random() - 0.5);
 }
 /* ################################################################### */
 
 /* La funzione generateQuestion() genera una domanda */
 function generateQuestion(i) {
-  buttons.forEach(btn => btn.disabled = false); // Abilita i bottoni
+  buttons.forEach(btn => btn.disabled = false);
+  
+
+  // Imposta immagine e audio
   images.sort(() => Math.random() - 0.5);
   audio_img.src = images[0];
   audio_inside.src = answers[array[i]][0];
-  const arr = [1, 2, 3, 4];
-  arr.sort(() => Math.random() - 0.5);
+
+  // Prendi la risposta giusta
+  const correctAnswer = {
+    text: answers[array[i]][1],
+    correct: true,
+    explanation: answers[array[i]][2]
+  };
+
+  // Prendi le risposte sbagliate (da altre domande)
+  let wrongAnswers = [];
+  for (let j = 0; j < answers.length; j++) {
+    if (j !== array[i]) {
+      wrongAnswers.push({
+        text: answers[j][1],
+        correct: false,
+        explanation: answers[j][2]
+      });
+    }
+  }
+  // Mischia e prendi le prime 3 sbagliate
+  wrongAnswers = wrongAnswers.sort(() => Math.random() - 0.5).slice(0, 3);
+
+  // Unisci e mescola tutte le risposte
+  let options = [correctAnswer, ...wrongAnswers].sort(() => Math.random() - 0.5);
+
+  // Assegna le risposte ai bottoni
   for (let b = 0; b < 4; b++) {
-    buttons[b].textContent = answers[array[i]][arr[b]][0];
-    buttons[b].setAttribute("data-correct", answers[array[i]][arr[b]][1]);
-    buttons[b].setAttribute("explanation", answers[array[i]][arr[b]][2]);
+    buttons[b].textContent = options[b].text;
+    buttons[b].setAttribute("data-correct", options[b].correct);
+    buttons[b].setAttribute("explanation", options[b].explanation);
     buttons[b].onclick = null;
-    buttons[b].onclick = () => {
+    buttons[b].onclick = function() {
       const isCorrect = buttons[b].getAttribute('data-correct') == "true";
       const explanation = buttons[b].getAttribute('explanation');
       if (isCorrect) {
         resultDiv.textContent = `✔️ Corretto! ${explanation}`;
         resultDiv.style.color = "lightgreen";
         correctAnswers++;
+        buttons.forEach(btn => {
+          btn.classList.add('wrong-answer');
+          btn.disabled = true;
+        });
+        this.classList.remove('wrong-answer');
+        this.classList.add('right-answer');
       } else {
         resultDiv.textContent = `❌ Risposta sbagliata. ${explanation}`;
         resultDiv.style.color = "red";
       }
-      buttons.forEach(btn => btn.disabled = true); // Disabilita i bottoni dopo la risposta
+      buttons.forEach(btn => btn.disabled = true);
       currentQuestion++;
       scoreText.textContent = `Risposte corrette: ${correctAnswers} su ${currentQuestion}`;
       next_button.style.display = 'block';
       if (currentQuestion == array.length){
           next_button.textContent = "Ricomincia il quiz";
       }
-      /* Parte che serve a far generare una nuova domanda, la lasciamo qui, nel caso servisse
-      setTimeout(() => {
-        resultDiv.textContent = "";
-        buttons.forEach(btn => btn.disabled = false);
-        currentQuestion++;
-        if (currentQuestion < array.length) {
-          generateQuestion(currentQuestion);
-        } else {
-          resultDiv.textContent = "Quiz terminato!";
-        }
-      }, 1500);
-      */
     };
   }
 }
+
 /* Funzione che permette di passare alla prossima domanda o di ricominciare il quiz*/
 function nextRestart(){
   if (currentQuestion == array.length){
@@ -139,7 +158,8 @@ function nextRestart(){
   generateQuestion(currentQuestion);
   next_button.style.display = "none";
   resultDiv.textContent = "";
-
+  buttons.forEach(btn => btn.classList.remove('right-answer'));
+  buttons.forEach(btn => btn.classList.remove('wrong-answer'));
 }
 /*#####################################################*/
 // All'avvio del quiz
