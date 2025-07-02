@@ -208,8 +208,9 @@ canvas {
 }
 
 .slides {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+    min-height: 40vh;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
 .slides img {
@@ -223,8 +224,12 @@ canvas {
 }
 
 .slides a {
-  flex: 0 0 auto; /* Impedisce che gli elementi si restringano */
-  text-decoration: none;
+    flex: 0 0 auto; /* Impedisce che gli elementi si restringano */
+    text-decoration: none;
+    height: 40vh;           /* stessa altezza delle immagini */
+    display: flex;
+    align-items: center;    /* centra l'immagine verticalmente */
+    justify-content: center;
 }
 
 .slides a:hover { /* Leggero effetto hover */
