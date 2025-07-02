@@ -145,39 +145,24 @@ function nextRestart(){
 /*#####################################################*/
 
 
-/* Manipolazione del database ed effettiva esecuzione */
-const config = {
-  locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/${file}`
-};
-
+/* Manipolazione file JSON ed effettiva esecuzione */
 let images = [];
 let answers = [];
-currentQuestion = 0;
-
-initSqlJs(config).then(SQL => {
-  fetch("/quiz/questions.db")  // Assicurati che quiz.db sia servito correttamente dal server
-    .then(res => res.arrayBuffer())
-    .then(buffer => {
-      const db = new SQL.Database(new Uint8Array(buffer));
-      const results = db.exec("SELECT * FROM domande");
-
-      if (!results.length) throw new Error("Nessun risultato nella tabella 'domande'");
-
-      const columns = results[0].columns;
-      const values = results[0].values;
-      const json = values.map(row => Object.fromEntries(row.map((val, i) => [columns[i], val])));
-
-      // Ora json è come se fosse il contenuto di questions.json["storia"]["mozart"]
-      images = json.map(q => q.image);
-      answers = json.map(q => [
-        q.audio,
-        q.correct,
-        q.explanation
-      ]);
-
-      environment();
-      generateQuestion(currentQuestion);
-    })
-    .catch(err => console.error("Errore:", err));
-});
+fetch('/quiz/questions.json')
+  .then(response => {
+    if (!response.ok) throw new Error("Errore nel caricamento del file JSON");
+    return response.json();
+  })
+  .then(data => {
+    const domandeMozart = data.storia.mozart;
+    images = domandeMozart.map(q => q.image);
+    answers = domandeMozart.map(q => [
+      q.audio,
+      q.correct,
+      q.explanation
+    ]);
+    environment();
+    generateQuestion(currentQuestion);
+  })
+  .catch(err => console.error("Errore:", err));
 /* ############################################################################################## */
