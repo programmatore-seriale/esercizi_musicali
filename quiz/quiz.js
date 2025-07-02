@@ -167,7 +167,7 @@ initSqlJs(config).then(SQL => {
       const values = results[0].values;
       const json = values.map(row => Object.fromEntries(row.map((val, i) => [columns[i], val])));
 
-      // Ora json è come se fosse il contenuto di questions.json["storia"]["mozart"]
+      // Ora json è un "normale" file .json
       images = json.map(q => q.image);
       answers = json.map(q => [
         q.audio,
