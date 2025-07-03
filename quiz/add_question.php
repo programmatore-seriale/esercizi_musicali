@@ -6,6 +6,8 @@ $question = $_POST['question'];
 $answer1 = $_POST['answer1'];
 $answer2 = $_POST['answer2'];
 $answer3 = $_POST['answer3'];
+$answer4 = $_POST['answer4'];
+$correct = $_POST['correct'];
 
 // Connessione DB
 $db = new SQLite3('questions.db');
