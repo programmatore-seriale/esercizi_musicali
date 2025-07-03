@@ -124,30 +124,17 @@ let images = [];
 let answers = [];
 currentQuestion = 0;
 
-initSqlJs(config).then(SQL => {
-  fetch("/quiz/questions.db")  // Assicurati che quiz.db sia servito correttamente dal server
-    .then(res => res.arrayBuffer())
-    .then(buffer => {
-      const db = new SQL.Database(new Uint8Array(buffer));
-      const results = db.exec("SELECT * FROM domande");
-
-      if (!results.length) throw new Error("Nessun risultato nella tabella 'domande'");
-
-      const columns = results[0].columns;
-      const values = results[0].values;
-      const json = values.map(row => Object.fromEntries(row.map((val, i) => [columns[i], val])));
-
-      // Ora json è un "normale" file .json
-      images = json.map(q => q.image);
-      answers = json.map(q => [
-        q.audio,
-        q.correct,
-        q.explanation
-      ]);
-
-      environment();
-      generateQuestion(currentQuestion);
-    })
-    .catch(err => console.error("Errore:", err));
-});
+fetch('../get_questions.php')
+  .then(res => res.json())
+  .then(json => {
+    images = json.map(q => q.image);
+    answers = json.map(q => [
+      '../../registrazioni/' + q.audio,
+      q.correct,
+      q.explanation
+    ]);
+    environment();
+    generateQuestion(currentQuestion);
+  })
+  .catch(err => console.error("Errore:", err));
 /* ############################################################################################## */

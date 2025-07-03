@@ -34,7 +34,7 @@ const config = {
 };
 
 initSqlJs(config).then(SQL => {
-  fetch("/quiz/questions.db")  // Assicurati che quiz.db sia servito correttamente dal server
+  fetch("questions.db")
     .then(res => res.arrayBuffer())
     .then(buffer => {
         const db = new SQL.Database(new Uint8Array(buffer));
@@ -56,7 +56,7 @@ initSqlJs(config).then(SQL => {
             a.href = `pagine/${composer.name.toLowerCase()}.html`;
             a.className = 'slide-item';
             const img = document.createElement('img');
-            img.src = composer.image;
+            img.src = composer.image; // Assicurati che composer.image sia già relativo
             img.alt = composer.name;
             a.appendChild(img);
             slidesContainer.appendChild(a);
