@@ -193,10 +193,11 @@ canvas {
     text-align: center;
 }
 /* --- Quiz Home --- */
-.intestazione {
+.heading {
     display: block;
     margin: 0 auto 0 auto;
-    max-width: 220px;    
+    height: 10vh;
+    width: auto; 
 }
 .slider {
   position: relative;
@@ -264,50 +265,67 @@ canvas {
 
 /* --- QUIZ test --- */
 
+.score-container{
+    display: block;
+    max-height: 10vh;
+    width: 100vw;
+}
+.score-container h1{
+    font-size: 3vw;
+}
+
 .quiz-container {
     background: #4c347c;
     color: white;
     border-radius: 15px;
-    max-width: 600px;
+    max-width: 60vw;
+    max-height: 80vh;
     margin-top: 10px;
     margin-right: auto;
     margin-left: auto;
     padding: 20px;
     text-align: center;
     box-shadow: 0 0 10px #000;
+    overflow: auto;
+    box-sizing: border-box;
 }
 
-.question {
-  margin: 20px 0;
-  font-size: 18px;
+.quiz-container * {
+    box-sizing: border-box;
 }
 
 .audio-image-container {
     display: flex;
     flex-direction: column;
     align-items: center; /* centra tutto in orizzontale */
-    gap: 16px;           /* spazio tra immagine e audio */
+    gap: 0.1vh;           /* spazio tra immagine e audio */
+    max-height: 30vh;
 }
 
 .audio-img {
     display: block;
     margin: 0 auto 20px auto;
-    max-width: 400px;   /* o la dimensione che preferisci */
+    max-width: 100%;
     width: 80vw;        /* responsivo: 80% della larghezza viewport */
-    max-height: 200px;
+    max-height: 22vh;
     height: auto;
+    width: auto;
     border-radius: 16px; /* opzionale: angoli arrotondati */
     box-shadow: 0 4px 16px rgba(0,0,0,0.15); /* opzionale: ombra */
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .audio-inside {
-    width: 220px;      /* regola la larghezza dei controlli audio */
-    min-width: 120px;
+    width: 30vw;      /* regola la larghezza dei controlli audio */
+    height: 5vh;
     background: rgba(255,255,255,0.7);
     border-radius: 8px;
 }
 
+.question {
+  margin: 20px 0;
+  font-size: 1.2vw;
+}
 
 .answers {
   display: grid;
@@ -316,9 +334,9 @@ canvas {
 }
 
 .answer-button {
-  padding: 15px;
+  padding: 2vh;
   border: none;
-  font-size: 16px;
+  font-size: 1.2vw;
   font-weight: bold;
   cursor: pointer;
   border-radius: 8px;
@@ -344,11 +362,11 @@ canvas {
 .wrong-answer:hover{background-color: #b10000 !important; color: white !important; opacity: 0.3;}
 .next-restart button{
     background-color: #14123a;
-    margin-top: 20px;
+    margin-top: 3vh;
     width: 20vw;
     padding: 15px;
     border: none;
-    font-size: 16px;
+    font-size: 1.2vw;
     font-weight: bold;
     cursor: pointer;
     border-radius: 8px;
@@ -364,8 +382,8 @@ canvas {
 }
 
 .result {
-  margin-top: 20px;
-  font-size: 20px;
+  margin-top: 2vh;
+  font-size: 1.4vw;
   font-weight: bold;
 }
 

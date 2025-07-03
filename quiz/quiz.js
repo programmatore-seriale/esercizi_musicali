@@ -124,7 +124,12 @@ let images = [];
 let answers = [];
 currentQuestion = 0;
 
-fetch('../get_questions.php')
+/*
+In questa prima riga ci occupiamo di chiamare lo script PHP get_questions.php
+Esso, grazie alla sua ultima riga, esso restituisce un file JSON,
+che poi è facilmente manipolabile
+*/
+fetch('../get.php') //riga che "invoca" get_questions.php
   .then(res => res.json())
   .then(json => {
     images = json.map(q => q.image);
