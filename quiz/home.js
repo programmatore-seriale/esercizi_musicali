@@ -33,6 +33,7 @@ const config = {
   locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/${file}`
 };
 
+/*
 initSqlJs(config).then(SQL => {
   fetch("questions.db")
     .then(res => res.arrayBuffer())
@@ -64,4 +65,28 @@ initSqlJs(config).then(SQL => {
     })
     .catch(err => console.error("Errore:", err));
 });
+*/
+fetch('get_composers.php') //riga che "invoca" get_composers.php
+  .then(res => res.json())
+  .then(json => {
+    console.log("JSON ricevuto:", json); // debug
+    // Ora json è un "normale" file .json
+    // QUI POSSIAMO METTERE IL CODICE SUL JSON
+    const slidesContainer = document.querySelector('.slides');
+    if (!slidesContainer) {
+        throw new Error("Elemento '.slides' non trovato nel DOM");
+    }
+    json.forEach(composer => {
+        // Crea l'elemento
+        const a = document.createElement('a');
+        a.href = `pagine/${composer.name.toLowerCase()}.html`;
+        a.className = 'slide-item';
+        const img = document.createElement('img');
+        img.src = composer.image; // Assicurati che composer.image sia già relativo
+        img.alt = composer.name;
+        a.appendChild(img);
+        slidesContainer.appendChild(a);
+    });
+  })
+  .catch(err => console.error("Errore:", err));
 /* ############################################################################################## */
