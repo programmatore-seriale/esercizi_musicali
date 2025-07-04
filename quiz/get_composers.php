@@ -7,7 +7,7 @@ $db = new SQLite3(__DIR__ . '/questions.db'); //la variabile __DIR__ serve appun
 /* ################################################################## */
 
 /* Con query MYSQL riusciamo a prendere tutte le domande */
-$results = $db->query('SELECT * FROM compositori');
+$results = $db->query('SELECT * FROM composers');
 /* ##################################################### */
 
 /*

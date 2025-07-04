@@ -125,16 +125,30 @@ let answers = [];
 currentQuestion = 0;
 
 /*
+Funzione per leggere il compositore dalla URL
+Serve a recuperare il nome del compositore selezionato nella pagina precedente (home.html)
+tramite il parametro presente nella barra degli indirizzi
+*/
+function getComposerFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('composer');
+}
+/*######################################################################*/
+
+/*
 In questa prima riga ci occupiamo di chiamare lo script PHP get_questions.php
 Esso, grazie alla sua ultima riga, esso restituisce un file JSON,
 che poi è facilmente manipolabile
 */
-fetch('../get_questions.php') //riga che "invoca" get_questions.php
+const composer = getComposerFromURL();
+//fetch('../get_questions.php') //riga che "invoca" get_questions.php
+fetch(`get_questions.php?composer=${encodeURIComponent(composer)}`) //chiamiamo get_questions.php passando il parametro composers
   .then(res => res.json())
   .then(json => {
+    console.log(json);
     images = json.map(q => q.image);
     answers = json.map(q => [
-      '../../registrazioni/' + q.audio,
+      '../registrazioni/' + q.audio,
       q.correct,
       q.explanation
     ]);

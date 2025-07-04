@@ -33,39 +33,6 @@ const config = {
   locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/${file}`
 };
 
-/*
-initSqlJs(config).then(SQL => {
-  fetch("questions.db")
-    .then(res => res.arrayBuffer())
-    .then(buffer => {
-        const db = new SQL.Database(new Uint8Array(buffer));
-        const results = db.exec("SELECT * FROM compositori");
-        if (!results.length) throw new Error("Nessun risultato nella tabella 'compositori'");
-        const columns = results[0].columns;
-        const values = results[0].values;
-        const json = values.map(row => Object.fromEntries(row.map((val, i) => [columns[i], val])));
-
-        // Ora json è un "normale" file .json
-        // QUI POSSIAMO METTERE IL CODICE SUL JSON
-        const slidesContainer = document.querySelector('.slides');
-        if (!slidesContainer) {
-            throw new Error("Elemento '.slides' non trovato nel DOM");
-        }
-        json.forEach(composer => {
-            // Crea l'elemento
-            const a = document.createElement('a');
-            a.href = `pagine/${composer.name.toLowerCase()}.html`;
-            a.className = 'slide-item';
-            const img = document.createElement('img');
-            img.src = composer.image; // Assicurati che composer.image sia già relativo
-            img.alt = composer.name;
-            a.appendChild(img);
-            slidesContainer.appendChild(a);
-        });
-    })
-    .catch(err => console.error("Errore:", err));
-});
-*/
 fetch('get_composers.php') //riga che "invoca" get_composers.php
   .then(res => res.json())
   .then(json => {
@@ -79,7 +46,9 @@ fetch('get_composers.php') //riga che "invoca" get_composers.php
     json.forEach(composer => {
         // Crea l'elemento
         const a = document.createElement('a');
-        a.href = `pagine/${composer.name.toLowerCase()}.html`;
+        //a.href = `pagine/${composer.name.toLowerCase()}.html`; //da togliere (versione vecchia)
+        /* Questo link ci manda a quiz.html aggiugendo il parametro composer */
+        a.href = `quiz.html?composer=${encodeURIComponent(composer.name)}`;
         a.className = 'slide-item';
         const img = document.createElement('img');
         img.src = composer.image; // Assicurati che composer.image sia già relativo
