@@ -13,7 +13,7 @@ $correct = $_POST['correct'];
 $db = new SQLite3('questions.db');
 
 // Prepara la query di inserimento (modifica le colonne secondo la tua struttura)
-$stmt = $db->prepare('INSERT INTO domande (question, answer1, answer2, answer3, answer4, correct) VALUES (:question, :answer1, :answer2, :answer3, :answer4, :correct)');
+$stmt = $db->prepare('INSERT INTO questions (question, answer1, answer2, answer3, answer4, correct) VALUES (:question, :answer1, :answer2, :answer3, :answer4, :correct)');
 $stmt->bindValue(':question', $question, SQLITE3_TEXT);
 $stmt->bindValue(':answer1', $answer1, SQLITE3_TEXT);
 $stmt->bindValue(':answer2', $answer2, SQLITE3_TEXT);

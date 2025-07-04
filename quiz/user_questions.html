@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Mozart</title>
+    <!-- Da inserire nel head di tutti i file del quiz -->
+    <link rel="stylesheet" href="../style.css"> <!-- Per applicare lo stile CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <!-- Per far funzionare l'icona di home -->
+    <link rel="icon" type="image/png" href="../immagini/logo.png"> <!-- Icona del sito -->
+    <!-- ############################################# -->
+</head>
+<body>
+    <!-- Intestazione da usare in tutte le pagine del quiz -->
+    <a href="../index.html" class="home-link">
+        <i class="fa-solid fa-house"></i>
+    </a>
+    <a href="home.html" class="quiz-link">
+        <img src="../immagini/intestazione.png" alt="Logo Esercizi Musicali" class="heading">
+    </a>
+    <!-- ################################################# -->
+    <!-- Lista dei compositori già creati dagli utenti (quelli di categoria user [2]) -->
+    <h2>Aggiungi un nuovo compositore</h2>
+    <form id="add-composer-form" action="add_composer.php" method="post" enctype="multipart/form-data">
+        <label for="composer-name">Nome compositore:</label>
+        <input type="text" id="composer-name" name="name" required>
+        <br>
+        <label for="composer-image">Immagine (opzionale):</label>
+        <input type="text" id="composer-image" name="image" accept="image/*">
+        <br>
+        <br>
+        <button type="submit" id="submit-composer-button">Aggiungi compositore</button>
+    </form>
+    <h1> Compositori creati da altri utenti </h1>
+    <ul class = "users-composers-list" id = "users-composers-list"></ul>
+    <!-- I vari collegamenti agli script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script> <!--Da mettere, permette di eseguire le query SQL-->
+    <script src="user_questions.js"></script>
+    <!-- ##################################################### -->
+</body>
+</html>

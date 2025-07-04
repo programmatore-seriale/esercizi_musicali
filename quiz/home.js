@@ -46,7 +46,6 @@ fetch('get_composers.php') //riga che "invoca" get_composers.php
     json.forEach(composer => {
         // Crea l'elemento
         const a = document.createElement('a');
-        //a.href = `pagine/${composer.name.toLowerCase()}.html`; //da togliere (versione vecchia)
         /* Questo link ci manda a quiz.html aggiugendo il parametro composer */
         a.href = `quiz.html?composer=${encodeURIComponent(composer.name)}`;
         a.className = 'slide-item';
