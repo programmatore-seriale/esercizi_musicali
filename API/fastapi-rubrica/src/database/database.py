@@ -43,6 +43,6 @@ Importa i modelli (definizioni delle tabelle)
 Crea tutte le tabelle nel database se non esistono già
 '''
 def init_db():
-    import src.models.contact  # Import models to create tables
+    import models.contact  # Import models to create tables
     Base.metadata.create_all(bind=engine)
 '''###############################################################################'''

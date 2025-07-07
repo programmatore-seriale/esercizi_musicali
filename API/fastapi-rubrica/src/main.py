@@ -5,6 +5,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.contacts import router as contacts_router
+from database.database import init_db
 
 app = FastAPI()
 
@@ -21,3 +22,10 @@ app.include_router(contacts_router, prefix="/contacts")
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Contacts API!"}
+
+'''
+Grazie a questa funzione, il database viene inizializzato all'avvio dell'applicazione.
+E verrà salvato sul disco
+'''
+init_db()
+'''###############################################################################'''
