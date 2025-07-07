@@ -3,6 +3,21 @@ const addComposerForm = document.getElementById("add-composer-form");
 const composerNameTextbox = document.getElementById("composer-name");
 const composerImageTextbox = document.getElementById("composer-image");
 const submitComposerButton = document.getElementById("submit-composer-button");
+const addQuestionForm = document.getElementById("add-question-form");
+/*Per adesso lasciamo stare anche il testo della domanda,
+da integrare poi negli esercizi di base
+const questionTextTextbox = document.getElementById("question-text");
+*/
+const questionImageTextbox = document.getElementById("question-image");
+const questionAudioTextbox = document.getElementById("question-audio");
+const questionComposerTextbox = document.getElementById("question-composer");
+const rightAnswerTextbox = document.getElementById("right-answer");
+/*Per adesso le risposte sbagliate le togliamo,
+perché il programma prende le risposte sbagliate dalle altre risposte corrette...
+const wrongAnswer1Textbox = document.getElementById("wrong-answer-1");
+const wrongAnswer2Textbox = document.getElementById("wrong-answer-2");
+const wrongAnswer3Textbox = document.getElementById("wrong-answer-3");
+*/
 /* ######################################## */
 
 /* Funzione che aggiunge in tabella il compositore inserito */
@@ -39,11 +54,8 @@ fetch('get_user_composers.php') //riga che "invoca" get_composers.php
 addComposerForm.addEventListener("submit", function(event) {
   event.preventDefault(); //impedisce che il browser ricarichi la pagina
   const category_id = 2; //la categoria che identifica i compositori aggiunti dagli utenti sarà sempre la 2
-  console.log(category_id);
   const name = composerNameTextbox.value;
-  console.log(name);
   const image = composerImageTextbox.value;
-  console.log(image);
   fetch("add_composer.php", {
     method: "POST",
     // grazie ad headers e a body possiamo inviare ad add_composer.php un JSON leggibile
@@ -55,7 +67,51 @@ addComposerForm.addEventListener("submit", function(event) {
   .then(response => response.json())
   .then(data => {
     if (data.success) {
-      document.getElementById("composerForm").reset();
+      document.getElementById("add-composer-form").reset();
+    }
+  })
+  .catch(error => {
+    console.error("Errore:", error);
+  });
+});
+/* ################################################################# */
+
+/* Diamo vita al form che permette di inserire una nuova domanda */
+addQuestionForm.addEventListener("submit", function(event) {
+  event.preventDefault(); //impedisce che il browser ricarichi la pagina
+  /*Per adesso lasciamo stare anche il testo della domanda,
+    da integrare poi negli esercizi di base
+  const text = questionTextTextbox.value;
+  */
+  const image = questionImageTextbox.value;
+  const audio = questionAudioTextbox.value;
+  const composer = questionComposerTextbox.value;
+  const rightAnswer = rightAnswerTextbox.value;
+  /* Per adesso le risposte sbagliate le togliamo,
+  perché il programma prende le risposte sbagliate dalle altre risposte corrette...
+  const wrongAnswer1 = wrongAnswer1Textbox.value;
+  const wrongAnswer2 = wrongAnswer2Textbox.value;
+  const wrongAnswer3 = wrongAnswer3Textbox.value;
+  */
+  console.log([image, audio, composer, rightAnswer]);
+  fetch("add_question.php", {
+    method: "POST",
+    // grazie ad headers e a body possiamo inviare ad add_composer.php un JSON leggibile
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: composer,           // deve chiamarsi name
+      audio: audio,
+      image: image,
+      correct: rightAnswer      // deve chiamarsi correct
+      // text: ... // se vuoi aggiungere il testo domanda
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      document.getElementById("add-question-form").reset();
     }
   })
   .catch(error => {

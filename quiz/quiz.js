@@ -141,14 +141,13 @@ Esso, grazie alla sua ultima riga, esso restituisce un file JSON,
 che poi è facilmente manipolabile
 */
 const composer = getComposerFromURL();
-//fetch('../get_questions.php') //riga che "invoca" get_questions.php
 fetch(`get_questions.php?composer=${encodeURIComponent(composer)}`) //chiamiamo get_questions.php passando il parametro composers
   .then(res => res.json())
   .then(json => {
     console.log(json);
     images = json.map(q => q.image);
     answers = json.map(q => [
-      '../registrazioni/' + q.audio,
+      q.audio,
       q.correct,
       q.explanation
     ]);

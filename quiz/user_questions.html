@@ -18,8 +18,8 @@
         <img src="../immagini/intestazione.png" alt="Logo Esercizi Musicali" class="heading">
     </a>
     <!-- ################################################# -->
-    <!-- Lista dei compositori già creati dagli utenti (quelli di categoria user [2]) -->
     <h2>Aggiungi un nuovo compositore</h2>
+    <!-- Form per inserire un nuovo compositore-->
     <form id="add-composer-form" action="add_composer.php" method="post" enctype="multipart/form-data">
         <label for="composer-name">Nome compositore:</label>
         <input type="text" id="composer-name" name="name" required>
@@ -30,8 +30,43 @@
         <br>
         <button type="submit" id="submit-composer-button">Aggiungi compositore</button>
     </form>
+    <!-- Lista dei compositori già creati dagli utenti (quelli di categoria user [2]) -->
     <h1> Compositori creati da altri utenti </h1>
     <ul class = "users-composers-list" id = "users-composers-list"></ul>
+    <!-- Form per inserire una nuova domanda -->
+     <form id="add-question-form" action="add_question.php" method="post" enctype="multipart/form-data">
+        <!-- Lasciamo per adesso perdere il testo della domanda,
+         da implementare prima negli esercizi base
+        <label for="question-text">Testo domanda</label>
+        <input type="text" id="question-text" name="text">
+        <br>
+        -->
+        <label for="question-image">Immagine domanda</label>
+        <input type="text" id="question-image" name="image">
+        <br>
+        <label for="question-audio">Audio domanda</label>
+        <input type="text" id="question-audio" name="audio">
+        <br>
+        <label for="question-composer">Compositore della domanda (occhio a scegliere quelli presenti in elenco)</label>
+        <input type="text" id="question-composer" name="question_composer" required>
+        <br>
+        <label for="right-answer">Risposta corretta</label>
+        <input type="text" id="right-answer" name="right_answer" required>
+        <br>
+        <!-- Per adesso le risposte sbagliate le togliamo,
+        perché il programma prende le risposte sbagliate dalle altre risposte corrette...
+        <label for="wrong-asnwer-1">Prima risposta sbagliata</label>
+        <input type="text" id="wrong-asnwer-1" name="wrong-asnwer-1" required>
+        <br>
+        <label for="wrong-asnwer-2">Seconda risposta sbagliata</label>
+        <input type="text" id="wrong-asnwer-2" name="wrong-asnwer-2">
+        <br>
+        <label for="wrong-asnwer-3">Terza risposta sbagliata</label>
+        <input type="text" id="wrong-asnwer-3" name="wrong-asnwer-3">
+        <br>
+        -->
+        <button type="submit" id="submit-question-button">Aggiungi domanda</button>
+    </form>
     <!-- I vari collegamenti agli script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script> <!--Da mettere, permette di eseguire le query SQL-->
     <script src="user_questions.js"></script>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Rubrica Contatti (API FastAPI)</title>
+</head>
+<body>
+    <h1>Rubrica Contatti</h1>
+
+    <h2>Aggiungi Contatto</h2>
+    <form id="add-contact-form">
+        <input type="text" id="name" placeholder="Nome" required>
+        <input type="text" id="phone" placeholder="Telefono" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Aggiungi</button>
+    </form>
+
+    <h2>Contatti</h2>
+    <ul id="contacts-list"></ul>
+
+    <script>
+    const API_URL = "http://127.0.0.1:8000/contacts/";
+
+    // Funzione per caricare tutti i contatti
+    function loadContacts() {
+        fetch(API_URL)
+            .then(res => res.json())
+            .then(data => {
+                const list = document.getElementById("contacts-list");
+                list.innerHTML = "";
+                data.forEach(contact => {
+                    const li = document.createElement("li");
+                    li.textContent = `${contact.name} - ${contact.phone} - ${contact.email} `;
+
+                    // Bottone elimina
+                    const btn = document.createElement("button");
+                    btn.textContent = "Elimina";
+                    btn.onclick = function() {
+                        fetch(API_URL + contact.id, { method: "DELETE" })
+                            .then(res => res.json())
+                            .then(() => loadContacts());
+                    };
+
+                    li.appendChild(btn);
+                    list.appendChild(li);
+                });
+            });
+    }
+
+    // Gestione invio form
+    document.getElementById("add-contact-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const name = document.getElementById("name").value;
+        const phone = document.getElementById("phone").value;
+        const email = document.getElementById("email").value;
+
+        fetch(API_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, phone, email })
+        })
+        .then(res => res.json())
+        .then(() => {
+            loadContacts();
+            this.reset();
+        });
+    });
+
+    // Carica i contatti all'avvio
+    loadContacts();
+    </script>
+</body>
+</html>
