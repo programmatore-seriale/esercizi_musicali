@@ -11,10 +11,12 @@ Campi: nome, telefono ed email (tutti richiesti)
 Uso: negli endpoint POST e PUT per creare contatti
 Nota: non include l'id perché viene generato automaticamente dal sistema
 '''
-class ContactCreate(BaseModel):
-    name: str
-    phone: str
-    email: str
+class QuestionsCreate(BaseModel):
+    composer_id: int
+    audio: str
+    image: str
+    correct: str
+    explanation: str
 '''##############################################################################################################'''
 '''
 2. ContactResponse - Schema per le risposte
@@ -23,11 +25,13 @@ Campi: include anche l'id oltre ai dati del contatto
 Uso: nelle risposte di GET, POST, PUT per restituire i contatti
 orm_mode = True: permette la conversione automatica da oggetti ORM (database) a JSON
 '''
-class ContactResponse(BaseModel):
+class QuestionsResponse(BaseModel):
     id: int
-    name: str
-    phone: str
-    email: str
+    composer_id: int
+    audio: str
+    image: str
+    correct: str
+    explanation: str
 
     class Config:
         orm_mode = True
