@@ -2,11 +2,12 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Test API Questions</title>
+    <title>Test API Questions & Composers</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 2em; }
         textarea { width: 100%; height: 80px; }
         pre { background: #eee; padding: 1em; }
+        h1 { margin-top: 2em; }
     </style>
 </head>
 <body>
@@ -14,10 +15,10 @@
 
     <h2>GET tutte le domande</h2>
     <button onclick="getQuestions()">GET /quiz/v0.1/questions/</button>
-    <pre id="getResult"></pre>
+    <pre id="getQuestionsResult"></pre>
 
     <h2>POST nuova domanda</h2>
-    <textarea id="postData">
+    <textarea id="postQuestionData">
 {
   "composer_id": 1,
   "audio": "prova.mp3",
@@ -27,11 +28,11 @@
 }
     </textarea><br>
     <button onclick="postQuestion()">POST /quiz/v0.1/questions/</button>
-    <pre id="postResult"></pre>
+    <pre id="postQuestionResult"></pre>
 
     <h2>PUT aggiorna domanda</h2>
-    ID domanda: <input id="putId" type="number" value="1" min="1"><br>
-    <textarea id="putData">
+    ID domanda: <input id="putQuestionId" type="number" value="1" min="1"><br>
+    <textarea id="putQuestionData">
 {
   "composer_id": 1,
   "audio": "aggiornato.mp3",
@@ -41,54 +42,134 @@
 }
     </textarea><br>
     <button onclick="putQuestion()">PUT /quiz/v0.1/questions/{id}</button>
-    <pre id="putResult"></pre>
+    <pre id="putQuestionResult"></pre>
 
     <h2>DELETE domanda</h2>
-    ID domanda: <input id="deleteId" type="number" value="1" min="1">
+    ID domanda: <input id="deleteQuestionId" type="number" value="1" min="1">
     <button onclick="deleteQuestion()">DELETE /quiz/v0.1/questions/{id}</button>
-    <pre id="deleteResult"></pre>
+    <pre id="deleteQuestionResult"></pre>
+
+    <hr>
+
+    <h1>Test API /quiz/v0.1/composers/</h1>
+
+    <h2>GET tutti i composers</h2>
+    <button onclick="getComposers()">GET /quiz/v0.1/composers/</button>
+    <pre id="getComposersResult"></pre>
+
+    <h2>POST nuovo composer</h2>
+    <textarea id="postComposerData">
+{
+  "name": "Ludwig van Beethoven",
+  "birth_year": 1770,
+  "death_year": 1827
+}
+    </textarea><br>
+    <button onclick="postComposer()">POST /quiz/v0.1/composers/</button>
+    <pre id="postComposerResult"></pre>
+
+    <h2>PUT aggiorna composer</h2>
+    ID composer: <input id="putComposerId" type="number" value="1" min="1"><br>
+    <textarea id="putComposerData">
+{
+  "name": "Beethoven aggiornato",
+  "birth_year": 1770,
+  "death_year": 1827
+}
+    </textarea><br>
+    <button onclick="putComposer()">PUT /quiz/v0.1/composers/{id}</button>
+    <pre id="putComposerResult"></pre>
+
+    <h2>DELETE composer</h2>
+    ID composer: <input id="deleteComposerId" type="number" value="1" min="1">
+    <button onclick="deleteComposer()">DELETE /quiz/v0.1/composers/{id}</button>
+    <pre id="deleteComposerResult"></pre>
 
     <script>
-        const base = "http://127.0.0.1:8000/quiz/v0.1/questions/";
+        // Questions
+        const questionsBase = "http://127.0.0.1:8000/quiz/v0.1/questions/";
 
         function getQuestions() {
-            fetch(base)
+            fetch(questionsBase)
                 .then(r => r.json())
-                .then(data => document.getElementById('getResult').textContent = JSON.stringify(data, null, 2))
-                .catch(e => document.getElementById('getResult').textContent = e);
+                .then(data => document.getElementById('getQuestionsResult').textContent = JSON.stringify(data, null, 2))
+                .catch(e => document.getElementById('getQuestionsResult').textContent = e);
         }
 
         function postQuestion() {
-            fetch(base, {
+            fetch(questionsBase, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: document.getElementById('postData').value
+                body: document.getElementById('postQuestionData').value
             })
             .then(r => r.json())
-            .then(data => document.getElementById('postResult').textContent = JSON.stringify(data, null, 2))
-            .catch(e => document.getElementById('postResult').textContent = e);
+            .then(data => document.getElementById('postQuestionResult').textContent = JSON.stringify(data, null, 2))
+            .catch(e => document.getElementById('postQuestionResult').textContent = e);
         }
 
         function putQuestion() {
-            const id = document.getElementById('putId').value;
-            fetch(base + id, {
+            const id = document.getElementById('putQuestionId').value;
+            fetch(questionsBase + id, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: document.getElementById('putData').value
+                body: document.getElementById('putQuestionData').value
             })
             .then(r => r.json())
-            .then(data => document.getElementById('putResult').textContent = JSON.stringify(data, null, 2))
-            .catch(e => document.getElementById('putResult').textContent = e);
+            .then(data => document.getElementById('putQuestionResult').textContent = JSON.stringify(data, null, 2))
+            .catch(e => document.getElementById('putQuestionResult').textContent = e);
         }
 
         function deleteQuestion() {
-            const id = document.getElementById('deleteId').value;
-            fetch(base + id, {
+            const id = document.getElementById('deleteQuestionId').value;
+            fetch(questionsBase + id, {
                 method: "DELETE"
             })
             .then(r => r.json())
-            .then(data => document.getElementById('deleteResult').textContent = JSON.stringify(data, null, 2))
-            .catch(e => document.getElementById('deleteResult').textContent = e);
+            .then(data => document.getElementById('deleteQuestionResult').textContent = JSON.stringify(data, null, 2))
+            .catch(e => document.getElementById('deleteQuestionResult').textContent = e);
+        }
+
+        // Composers
+        const composersBase = "http://127.0.0.1:8000/quiz/v0.1/composers/";
+
+        function getComposers() {
+            fetch(composersBase)
+                .then(r => r.json())
+                .then(data => document.getElementById('getComposersResult').textContent = JSON.stringify(data, null, 2))
+                .catch(e => document.getElementById('getComposersResult').textContent = e);
+        }
+
+        function postComposer() {
+            fetch(composersBase, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: document.getElementById('postComposerData').value
+            })
+            .then(r => r.json())
+            .then(data => document.getElementById('postComposerResult').textContent = JSON.stringify(data, null, 2))
+            .catch(e => document.getElementById('postComposerResult').textContent = e);
+        }
+
+        function putComposer() {
+            const id = document.getElementById('putComposerId').value;
+            fetch(composersBase + id, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: document.getElementById('putComposerData').value
+            })
+            .then(r => r.json())
+            .then(data => document.getElementById('putComposerResult').textContent = JSON.stringify(data, null, 2))
+            .catch(e => document.getElementById('putComposerResult').textContent = e);
+        }
+
+        function deleteComposer() {
+            const id = document.getElementById('deleteComposerId').value;
+            fetch(composersBase + id, {
+                method: "DELETE"
+            })
+            .then(r => r.json())
+            .then(data => document.getElementById('deleteComposerResult').textContent = JSON.stringify(data, null, 2))
+            .catch(e => document.getElementById('deleteComposerResult').textContent = e);
         }
     </script>
 </body>

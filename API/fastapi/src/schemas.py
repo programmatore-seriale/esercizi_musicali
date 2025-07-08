@@ -5,6 +5,11 @@ Gli schemi fungono da contratti che definiscono la struttura dei dati in ingress
 from pydantic import BaseModel
 
 '''
+#########################################################################################################################
+Questions
+#########################################################################################################################
+'''
+'''
 1. ContactCreate - Schema per la creazione
 Scopo: validare i dati quando si crea un nuovo contatto
 Campi: nome, telefono ed email (tutti richiesti)
@@ -35,4 +40,32 @@ class QuestionsResponse(BaseModel):
 
     class Config:
         orm_mode = True
-'''#####################################################################################################################'''
+'''
+#########################################################################################################################
+Composers
+#########################################################################################################################
+'''
+class ComposersCreate(BaseModel):
+    name: str
+    category_id: int
+    image: str
+class ComposersResponse(BaseModel):
+    id: int
+    name: str
+    category_id: int
+    image: str
+
+    class Config:
+        orm_mode = True
+'''
+#########################################################################################################################
+Categories
+#########################################################################################################################
+'''
+class CategoriesCreate(BaseModel):
+    name: str
+class CategoriesResponse(BaseModel):
+    id: int
+    name: str
+    class Config:
+        orm_mode = True

@@ -12,7 +12,9 @@ Importiamo i modelli delle nostre domande
 Notiamo come in entrambe ci siano .. semplicemente vuol dire che torniamo indietro di una cartella nel file system (questa cosa l'ho momentaneamente tolta)
 '''
 import models  # Importa il file models.py come modulo
+from models import * # serve anche questa riga, Paolino del futuro non la cancellare
 import schemas  # Importa il file schemas.py come modulo
+from schemas import * # serve anche questa riga, Paolino del futuro non la cancellare
 from database import SessionLocal
 '''#################################################################################################################'''
 
@@ -40,6 +42,11 @@ def get_db():
 Qui mettiamo le varie routes
 Come già scritto sopra, esse avranno tutte la sintassi:
 @router.post("address", attributes) ; @router.put("address", attributes) ; @router.get("address", attributes) ; @router.delete("address", attributes)
+'''
+'''
+#########################################################################################################################
+Questions
+#########################################################################################################################
 '''
 object_prefix = "/questions" # definiamo il prefisso per le rotte delle domande
 
@@ -89,9 +96,108 @@ def delete_question(question_id: int, db: Session = Depends(get_db)):
     db.commit()
     return {"message": "Question deleted successfully"}
 
-object_prefix = "/pending"  # tutta la parte che segue è commentata in quanto serve a manipolare oggetti non ancora implementati
 '''
-@router.post(object_prefix + "/", response_model=ObjcetResponse)
+#########################################################################################################################
+Composers
+#########################################################################################################################
+'''
+object_prefix = "/objects"  # definiamo il prefisso per le rotte dei compositori
+
+@router.post(object_prefix + "/", response_model=ComposersResponse)
+def create_composer(composer: ComposersCreate, db: Session = Depends(get_db)):
+    new_composer = models.Composer(
+        name=composer.name,
+        category_id=2, # il category_id sarà sempre 2, in quanto indica la categoria creata dagli utenti
+        image=composer.image
+    )
+    db.add(new_composer)
+    db.commit()
+    db.refresh(new_composer)
+    return new_composer
+
+@router.get(object_prefix + "/", response_model=List[ComposersResponse])
+def get_composers(db: Session = Depends(get_db)):
+    return db.query(models.Composer).all()
+
+@router.get(object_prefix + "/{composer_id}", response_model=ComposersResponse)
+def get_composer(composer_id: int, db: Session = Depends(get_db)):
+    composer = db.query(models.Composer).filter(models.Composer.id == composer_id).first()
+    if not composer:
+        raise HTTPException(status_code=404, detail="Composer not found")
+    return composer
+
+@router.put(object_prefix + "/{composer_id}", response_model=ComposersResponse)
+def update_composer(composer_id: int, composer: ComposersCreate, db: Session = Depends(get_db)):
+    db_composer = db.query(models.Composer).filter(models.Composer.id == composer_id).first()
+    if not db_composer:
+        raise HTTPException(status_code=404, detail="Composer not found")
+    for key, value in composer.dict().items():
+        setattr(db_composer, key, value)
+    db.commit()
+    db.refresh(db_composer)
+    return db_composer
+
+@router.delete(object_prefix + "/{composer_id}", response_model=dict)
+def delete_composer(composer_id: int, db: Session = Depends(get_db)):
+    db_composer = db.query(models.Composer).filter(models.Composer.id == composer_id).first()
+    if not db_composer:
+        raise HTTPException(status_code=404, detail="Composer not found")
+    db.delete(db_composer)
+    db.commit()
+    return {"message": "Composer deleted successfully"}
+
+'''
+#########################################################################################################################
+Categories
+#########################################################################################################################
+'''
+object_prefix = "/categories"  # definiamo il prefisso per le rotte delle categorie
+
+@router.post(object_prefix + "/", response_model=schemas.CategoriesResponse)
+def create_category(category: schemas.CategoriesCreate, db: Session = Depends(get_db)):
+    new_category = models.Category(
+        name=category.name
+    )
+    db.add(new_category)
+    db.commit()
+    db.refresh(new_category)
+    return new_category
+
+@router.get(object_prefix + "/", response_model=List[schemas.CategoriesResponse])
+def get_categories(db: Session = Depends(get_db)):
+    return db.query(models.Category).all()
+
+@router.get(object_prefix + "/{category_id}", response_model=schemas.CategoriesResponse)
+def get_category(category_id: int, db: Session = Depends(get_db)):
+    category = db.query(models.Category).filter(models.Category.id == category_id).first()
+    if not category:
+        raise HTTPException(status_code=404, detail="Category not found")
+    return category
+
+@router.put(object_prefix + "/{category_id}", response_model=schemas.CategoriesResponse)
+def update_category(category_id: int, category: schemas.CategoriesCreate, db: Session = Depends(get_db)):
+    db_category = db.query(models.Category).filter(models.Category.id == category_id).first()
+    if not db_category:
+        raise HTTPException(status_code=404, detail="Category not found")
+    for key, value in category.dict().items():
+        setattr(db_category, key, value)
+    db.commit()
+    db.refresh(db_category)
+    return db_category
+
+@router.delete(object_prefix + "/{category_id}", response_model=dict)
+def delete_category(category_id: int, db: Session = Depends(get_db)):
+    db_category = db.query(models.Category).filter(models.Category.id == category_id).first()
+    if not db_category:
+        raise HTTPException(status_code=404, detail="Category not found")
+    db.delete(db_category)
+    db.commit()
+    return {"message": "Category deleted successfully"}
+
+# tutta la parte che segue è commentata in quanto serve a manipolare oggetti non ancora implementati
+'''
+object_prefix = "/pending"  
+@router.post(object_prefix + "/", response_model=ObjectResponse)
 def create_object(object: ObjectCreate, db: Session = Depends(get_db)):
     new_object = Object(
         #qua chiaramente dipende dai parametri che abbiamo definito nel modello Object
