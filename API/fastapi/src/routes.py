@@ -80,7 +80,7 @@ def get_question(question_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Question not found")
     return question
 
-@router.get("/questions/by_composer/{composer_id}", response_model=List[schemas.QuestionsResponse])
+@router.get(object_prefix + "/by_composer/{composer_id}", response_model=List[schemas.QuestionsResponse])
 def get_questions_by_composer(composer_id: int, db: Session = Depends(get_db)):
     return db.query(models.Question).filter(models.Question.composer_id == composer_id).all()
 
@@ -133,6 +133,10 @@ def get_composer(composer_id: int, db: Session = Depends(get_db)):
     if not composer:
         raise HTTPException(status_code=404, detail="Composer not found")
     return composer
+
+@router.get(object_prefix + "/by_category/{category_id}", response_model=List[schemas.ComposersResponse])
+def get_composers_by_category(category_id: int, db: Session = Depends(get_db)):
+    return db.query(models.Composer).filter(models.Composer.category_id == category_id).all()
 
 @router.put(object_prefix + "/{composer_id}", response_model=ComposersResponse)
 def update_composer(composer_id: int, composer: ComposersCreate, db: Session = Depends(get_db)):
