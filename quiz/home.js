@@ -33,7 +33,7 @@ const config = {
   locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/${file}`
 };
 
-fetch('get_composers.php') //riga che "invoca" get_composers.php
+fetch('http://127.0.0.1:8000/quiz/v0.1/composers/') //riga che "invoca" get_composers.php
   .then(res => res.json())
   .then(json => {
     console.log("JSON ricevuto:", json); // debug

@@ -101,7 +101,7 @@ def delete_question(question_id: int, db: Session = Depends(get_db)):
 Composers
 #########################################################################################################################
 '''
-object_prefix = "/objects"  # definiamo il prefisso per le rotte dei compositori
+object_prefix = "/composers"  # definiamo il prefisso per le rotte dei compositori
 
 @router.post(object_prefix + "/", response_model=ComposersResponse)
 def create_composer(composer: ComposersCreate, db: Session = Depends(get_db)):
