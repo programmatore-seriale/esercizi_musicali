@@ -131,17 +131,18 @@ tramite il parametro presente nella barra degli indirizzi
 */
 function getComposerFromURL() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('composer');
+    return params.get('composer_id');
 }
 /*######################################################################*/
 
 /*
-In questa prima riga ci occupiamo di chiamare lo script PHP get_questions.php
-Esso, grazie alla sua ultima riga, esso restituisce un file JSON,
+In questa prima riga ci occupiamo di effettuare la HTTP request che chiami il compositore richiesto
+Dopodiché recuperiamo tutte le domande ad egli correlate
+Esso, grazie alla sua ultima riga, restituisce un file JSON,
 che poi è facilmente manipolabile
 */
-const composer = getComposerFromURL();
-fetch(`get_questions.php?composer=${encodeURIComponent(composer)}`) //chiamiamo get_questions.php passando il parametro composers
+const composer_id = getComposerFromURL();
+fetch(`http://127.0.0.1:8000/quiz/v0.1/questions/by_composer/${composer_id}`) //HTTP request del compositore
   .then(res => res.json())
   .then(json => {
     console.log(json);

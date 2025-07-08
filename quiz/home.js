@@ -33,7 +33,7 @@ const config = {
   locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/${file}`
 };
 
-fetch('http://127.0.0.1:8000/quiz/v0.1/composers/') //riga che "invoca" get_composers.php
+fetch('http://127.0.0.1:8000/quiz/v0.1/composers/') //riga che fa una HTTP request alle API create
   .then(res => res.json())
   .then(json => {
     console.log("JSON ricevuto:", json); // debug
@@ -47,7 +47,7 @@ fetch('http://127.0.0.1:8000/quiz/v0.1/composers/') //riga che "invoca" get_comp
         // Crea l'elemento
         const a = document.createElement('a');
         /* Questo link ci manda a quiz.html aggiugendo il parametro composer */
-        a.href = `quiz.html?composer=${encodeURIComponent(composer.name)}`;
+        a.href = `quiz.html?composer_id=${encodeURIComponent(composer.id)}`;
         a.className = 'slide-item';
         const img = document.createElement('img');
         img.src = composer.image; // Assicurati che composer.image sia già relativo

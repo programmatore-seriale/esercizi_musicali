@@ -52,7 +52,11 @@ object_prefix = "/questions" # definiamo il prefisso per le rotte delle domande
 
 @router.post(object_prefix + "/", response_model=schemas.QuestionsResponse)
 def create_question(question: schemas.QuestionsCreate, db: Session = Depends(get_db)):
-    print(question)
+    # Controllo che il composer_id esista
+    composer = db.query(models.Composer).filter(models.Composer.id == question.composer_id).first()
+    if not composer:
+        raise HTTPException(status_code=400, detail="Il composer_id non esiste")
+
     new_question = models.Question(
         composer_id=question.composer_id,
         audio=question.audio,
@@ -75,6 +79,10 @@ def get_question(question_id: int, db: Session = Depends(get_db)):
     if not question:
         raise HTTPException(status_code=404, detail="Question not found")
     return question
+
+@router.get("/questions/by_composer/{composer_id}", response_model=List[schemas.QuestionsResponse])
+def get_questions_by_composer(composer_id: int, db: Session = Depends(get_db)):
+    return db.query(models.Question).filter(models.Question.composer_id == composer_id).all()
 
 @router.put(object_prefix + "/{question_id}", response_model=schemas.QuestionsResponse)
 def update_question(question_id: int, question: schemas.QuestionsCreate, db: Session = Depends(get_db)):
