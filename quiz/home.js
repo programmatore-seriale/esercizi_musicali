@@ -34,7 +34,15 @@ const config = {
 };
 
 fetch('http://127.0.0.1:8000/quiz/v0.1/composers/') //riga che fa una HTTP request alle API create
-  .then(res => res.json())
+  .then(async res => {
+    const json = await res.json();
+    if (!res.ok) {
+      // Se la risposta HTTP è un errore, lo segnaliamo in console
+      console.error("Errore HTTP:", json.detail || json);
+      throw new Error(json.detail || "Errore nella richiesta");
+    }
+    return json;
+  })
   .then(json => {
     console.log("JSON ricevuto:", json); // debug
     // Ora json è un "normale" file .json

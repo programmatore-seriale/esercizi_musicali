@@ -32,7 +32,15 @@ document.addEventListener("DOMContentLoaded", function() {
   let userComposers = []; // Array per memorizzare i compositori aggiunti dagli utenti, così da manipolarli in futuri fetch
   /* otteniamo, quando la pagina viene ricaricata, tutti i compositori aggiunti da utenti */
   fetch('http://127.0.0.1:8000/quiz/v0.1/composers/by_category/2') //riga che fa una HTTP request alle API create, richiedendo tutti i compositori di categoria 2 (user)
-    .then(res => res.json())
+    .then(async res => {
+    const json = await res.json();
+    if (!res.ok) {
+      // Se la risposta HTTP è un errore, lo segnaliamo in console
+      console.error("Errore HTTP:", json.detail || json);
+      throw new Error(json.detail || "Errore nella richiesta");
+    }
+    return json;
+})
     .then(json => {
       userComposers = json; // Salviamo i compositori in un array
       console.log("JSON ricevuto:", json); // debug
@@ -66,7 +74,15 @@ document.addEventListener("DOMContentLoaded", function() {
       },
       body: JSON.stringify({ name, category_id, image })
     })
-    .then(response => response.json())
+    .then(async res => {
+      const json = await res.json();
+      if (!res.ok) {
+        // Se la risposta HTTP è un errore, lo segnaliamo in console
+        console.error("Errore HTTP:", json.detail || json);
+        throw new Error(json.detail || "Errore nella richiesta");
+      }
+      return json;
+    })
     .then(data => {
       if (data.id) {
         document.getElementById("add-composer-form").reset(); // Resetta il form dopo l'inserimento, così nessuno può spammare aggiunte di compositori identici
@@ -125,12 +141,20 @@ document.addEventListener("DOMContentLoaded", function() {
         explanation: ""
       })
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data.id) {
-        document.getElementById("add-question-form").reset();
-        console.log("Domanda aggiunta con successo:", data);
-      }
+    .then(async res => {
+    const json = await res.json();
+    if (!res.ok) {
+      // Se la risposta HTTP è un errore, lo segnaliamo in console
+      console.error("Errore HTTP:", json.detail || json);
+      throw new Error(json.detail || "Errore nella richiesta");
+    }
+    return json;
+  })
+  .then(data => {
+    if (data.id) {
+      document.getElementById("add-question-form").reset();
+      console.log("Domanda aggiunta con successo:", data);
+    }
     })
     .catch(error => {
       console.error("Errore:", error);

@@ -24,7 +24,7 @@ app.add_middleware(
 '''UNICA PARTE A CAMBIARE PER OGNI PROGETTO
 OCCHIO A object_router, DEVE ESSERE UGUALE A QUELLO DEFINITO IN routes/contacts.py
 '''
-# L'indirizzo completo è quindi http://127.0.0.1:8000/objects_prefix
+# L'indirizzo completo è quindi http://127.0.0.1:8000/application_prefix/v0.1/objects_prefix
 application_prefix = "/quiz"
 version_prefix = "/v0.1"
 app.include_router(object_router, prefix=application_prefix + version_prefix)

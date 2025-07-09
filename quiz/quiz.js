@@ -143,7 +143,15 @@ che poi è facilmente manipolabile
 */
 const composer_id = getComposerFromURL();
 fetch(`http://127.0.0.1:8000/quiz/v0.1/questions/by_composer/${composer_id}`) //HTTP request del compositore
-  .then(res => res.json())
+  .then(async res => {
+    const json = await res.json();
+    if (!res.ok) {
+      // Se la risposta HTTP è un errore, lo segnaliamo in console
+      console.error("Errore HTTP:", json.detail || json);
+      throw new Error(json.detail || "Errore nella richiesta");
+    }
+    return json;
+})
   .then(json => {
     console.log(json);
     images = json.map(q => q.image);
