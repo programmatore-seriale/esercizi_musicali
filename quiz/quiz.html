@@ -6,62 +6,67 @@
     <!-- Da inserire nel head di tutti i file del quiz -->
     <link rel="stylesheet" href="../style.css"> <!-- Per applicare lo stile CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <!-- Per far funzionare l'icona di home -->
-    <link rel="icon" type="image/png" href="../immagini/logo.png"> <!-- Icona del sito -->
+    <link rel="icon" type="image/png" href="../immagini/logo.png" alt="Logo Esercizi Musicali"> <!-- Icona del sito -->
     <!-- ############################################# -->
 </head>
 <body>
     <!-- Intestazione da usare in tutte le pagine del quiz -->
-    <a href="../index.html" class="home-link">
-        <i class="fa-solid fa-house"></i>
+    <a href="../index.html" class="home-link" aria-label="Torna alla home">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        <span class="sr-only">Home</span>
     </a>
-    <a href="home.html" class="quiz-link">
+    <a href="home.html" class="quiz-link" aria-label="Torna alla pagina principale del quiz">
         <img src="../immagini/intestazione.png" alt="Logo Esercizi Musicali" class="heading">
     </a>
     <!-- ################################################# -->
     <div class="score-container">
         <h1 class="score" id="score">
-            
+            <!-- Il punteggio viene aggiornato via JS -->
         </h1>
     </div>
-    <div class="quiz-container">
+    <div class="quiz-container" aria-label="Quiz musicale">
         <div class="audio-image-container">
             <img src="" alt="Esercizio senza immagine" class="audio-img" id="audio-img">
-            <audio controls class="audio-inside" id="audio-inside">
+            <audio controls class="audio-inside" id="audio-inside" aria-label="Audio del brano da riconoscere">
                 <source src="" type="audio/mpeg">
                 Il tuo browser non supporta l'audio HTML5.
             </audio>
         </div>
-        <div class="question">
-            Ascolta questo file audio, che brano, tra quelli che abbiano ascoltato in classe ti sembra di riconoscere?
+        <div class="question" id="question-text">
+            Ascolta questo file audio, che brano, tra quelli che abbiamo ascoltato in classe, ti sembra di riconoscere?
         </div>
-        <div class="answers">
+        <div class="answers" role="group" aria-label="Risposte possibili">
             <button class="answer-button red" id="answer-button-red"
                 data-correct=""
-                explanation="">
-                <!--Non cancellare la riga vuota-->
+                explanation=""
+                aria-label="Risposta 1">
+                <span class="sr-only">Risposta 1</span>
             </button>
             <button class="answer-button blue" id="answer-button-blue"
                 data-correct=""
-                explanation="">
-                <!--Non cancellare la riga vuota-->
+                explanation=""
+                aria-label="Risposta 2">
+                <span class="sr-only">Risposta 2</span>
             </button>
             <button class="answer-button orange" id="answer-button-orange"
                 data-correct=""
-                explanation="">
-                <!--Non cancellare la riga vuota-->
+                explanation=""
+                aria-label="Risposta 3">
+                <span class="sr-only">Risposta 3</span>
             </button>
             <button class="answer-button green" id="answer-button-green"
                 data-correct=""
-                explanation="">
-                <!--Non cancellare la riga vuota-->
+                explanation=""
+                aria-label="Risposta 4">
+                <span class="sr-only">Risposta 4</span>
             </button>
         </div>
         <div id="next-restart" class="next-restart">
-            <button id="next-button" class="next-button" onclick="nextRestart()">
+            <button id="next-button" class="next-button" onclick="nextRestart()" aria-label="Prossima domanda">
                 Prossima domanda
             </button>
         </div>
-        <div id="result" class="result"></div>
+        <div id="result" class="result" aria-live="polite"></div>
     </div>
     <!-- Anche lo script è uguale per tutte le pagine del quiz -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/sql-wasm.js"></script> <!--Da mettere, permette di eseguire le query SQL-->

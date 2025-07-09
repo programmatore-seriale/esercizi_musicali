@@ -28,12 +28,14 @@ document.addEventListener("DOMContentLoaded", function() {
       users_composers_list.innerHTML = ""; // Pulisce la lista prima di riempirla
       json.forEach(composer => {
         const li = document.createElement('li');
+        // Nome del compositore come testo
         li.textContent = composer.name;
 
-        // Bottone elimina accanto al nome
+        // Bottone elimina accanto al nome, con alternativa testuale
         const deleteBtn = document.createElement('button');
         deleteBtn.textContent = "Elimina";
         deleteBtn.className = "delete-composer-btn";
+        deleteBtn.setAttribute("aria-label", `Elimina il compositore ${composer.name}`);
         deleteBtn.addEventListener("click", function() {
           if (confirm(`Sei sicuro di voler eliminare "${composer.name}"?`)) {
             fetch(`http://127.0.0.1:8000/composers/${composer.id}`, {
@@ -97,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const deleteBtn = document.createElement('button');
             deleteBtn.textContent = "Elimina";
             deleteBtn.className = "delete-composer-btn";
+            deleteBtn.setAttribute("aria-label", `Elimina il compositore ${composer.name}`); //aria-label="Elimina il compositore Mario Rossi" (ad esempio): serve a descrivere chiaramente lo scopo del pulsante agli utenti di screen reader, anche se l’elemento ha solo un’icona visiva (come un’icona a forma di cestino 🗑️).
             deleteBtn.addEventListener("click", function() {
               if (confirm(`Sei sicuro di voler eliminare "${composer.name}"?`)) {
                 fetch(`http://127.0.0.1:8000/composers/${composer.id}`, {

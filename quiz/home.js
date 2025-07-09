@@ -57,10 +57,16 @@ fetch('http://127.0.0.1:8000/composers/') //riga che fa una HTTP request alle AP
         /* Questo link ci manda a quiz.html aggiugendo il parametro composer */
         a.href = `quiz.html?composer_id=${encodeURIComponent(composer.id)}`;
         a.className = 'slide-item';
+        // Immagine con alt descrittivo
         const img = document.createElement('img');
         img.src = composer.image; // Assicurati che composer.image sia già relativo
-        img.alt = composer.name;
+        img.alt = composer.name ? `Foto di ${composer.name}` : "Immagine compositore";
         a.appendChild(img);
+        // Testo alternativo visibile solo agli screen reader
+        const srText = document.createElement('span');
+        srText.className = "sr-only";
+        srText.textContent = composer.name;
+        a.appendChild(srText);
         slidesContainer.appendChild(a);
     });
   })

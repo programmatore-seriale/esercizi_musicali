@@ -36,11 +36,11 @@ function environment(){
 /* La funzione generateQuestion() genera una domanda */
 function generateQuestion(i) {
   buttons.forEach(btn => btn.disabled = false);
-  
 
   // Imposta immagine e audio
   images.sort(() => Math.random() - 0.5);
   audio_img.src = images[0];
+  audio_img.alt = images[0] ? "Immagine della domanda" : "Esercizio senza immagine"; // Alternativa testuale dinamica
   audio_inside.src = answers[array[i]][0];
 
   // Prendi la risposta giusta
@@ -72,6 +72,10 @@ function generateQuestion(i) {
     buttons[b].textContent = options[b].text;
     buttons[b].setAttribute("data-correct", options[b].correct);
     buttons[b].setAttribute("explanation", options[b].explanation);
+    buttons[b].setAttribute("aria-label", options[b].text); // Alternativa testuale per screen reader
+    // Aggiorna anche il testo sr-only
+    let sr = buttons[b].querySelector('.sr-only');
+    if (sr) sr.textContent = options[b].text;
     buttons[b].onclick = null;
     buttons[b].onclick = function() {
       const isCorrect = buttons[b].getAttribute('data-correct') == "true";
