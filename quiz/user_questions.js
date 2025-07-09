@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let userComposers = []; // Array per memorizzare i compositori aggiunti dagli utenti, così da manipolarli in futuri fetch
   /* otteniamo, quando la pagina viene ricaricata, tutti i compositori aggiunti da utenti */
-  fetch('http://127.0.0.1:8000/quiz/v0.1/composers/by_category/2') //riga che fa una HTTP request alle API create, richiedendo tutti i compositori di categoria 2 (user)
+  fetch('http://127.0.0.1:8000/composers/by_category/2') //riga che fa una HTTP request alle API create, richiedendo tutti i compositori di categoria 2 (user)
     .then(async res => {
     const json = await res.json();
     if (!res.ok) {
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const category_id = 2; //la categoria che identifica i compositori aggiunti dagli utenti sarà sempre la 2
     const name = composerNameTextbox.value; //nome del compositore inserito dall'utente
     const image = composerImageTextbox.value;
-    fetch("http://127.0.0.1:8000/quiz/v0.1/composers/", { //HTTP request con method: POST così da creare un nuovo compositore
+    fetch("http://127.0.0.1:8000/composers/", { //HTTP request con method: POST così da creare un nuovo compositore
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const wrongAnswer3 = wrongAnswer3Textbox.value;
     */
     console.log([image, audio, composerName, composer_id, rightAnswer]);
-    fetch("http://127.0.0.1:8000/quiz/v0.1/questions/", { //HTTP request con method: POST così da creare una nuova domanda
+    fetch("http://127.0.0.1:8000/questions/", { //HTTP request con method: POST così da creare una nuova domanda
       method: "POST",
       headers: {
         "Content-Type": "application/json"

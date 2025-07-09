@@ -142,7 +142,7 @@ Esso, grazie alla sua ultima riga, restituisce un file JSON,
 che poi è facilmente manipolabile
 */
 const composer_id = getComposerFromURL();
-fetch(`http://127.0.0.1:8000/quiz/v0.1/questions/by_composer/${composer_id}`) //HTTP request del compositore
+fetch(`http://127.0.0.1:8000/questions/by_composer/${composer_id}`) //HTTP request del compositore
   .then(async res => {
     const json = await res.json();
     if (!res.ok) {

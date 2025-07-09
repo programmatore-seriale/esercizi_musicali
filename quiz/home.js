@@ -33,7 +33,7 @@ const config = {
   locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/${file}`
 };
 
-fetch('http://127.0.0.1:8000/quiz/v0.1/composers/') //riga che fa una HTTP request alle API create
+fetch('http://127.0.0.1:8000/composers/') //riga che fa una HTTP request alle API create
   .then(async res => {
     const json = await res.json();
     if (!res.ok) {
