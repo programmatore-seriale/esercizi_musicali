@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("bas",["Class"],[["Base",,[[,,,,0,"File2:database.py:Base","PythonClass:Base"]]]]);

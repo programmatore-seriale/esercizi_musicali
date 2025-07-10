@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("dat",["File","Variable"],[["database",,[[,"database.py",,,0,"File2:database.py:database.py"]]],["DATABASE_URL",,[[,,,,1,"File2:database.py:DATABASE_URL"]]]]);

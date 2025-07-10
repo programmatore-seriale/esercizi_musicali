@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("ini",["Function"],[["init_db",,[["Base",,,,0,"File2:database.py:Base.init_db","PythonClass:Base:init_db"]]]]);

@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:main.py","main.py");NDSummary.OnSummaryLoaded("File2:main.py",[["Python","Python"]],[["Functions","Function"],["Groups","Group"]],[[8,0,1,"Functions","Functions"],[9,0,0,"<span class=\"Qualifier\">@app.</span>&#8203;get()","@app.get"]]);

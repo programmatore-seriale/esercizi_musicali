@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File2:models.py","models.py");NDSummary.OnSummaryLoaded("File2:models.py",[["Python","Python"]],[["Classes","Class"]],[[2,0,0,"Question","Question"],[6,0,0,"Composer","Composer"],[7,0,0,"Category","Category"]]);

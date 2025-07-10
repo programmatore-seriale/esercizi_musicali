@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("PythonClass:Base","Base");NDSummary.OnSummaryLoaded("PythonClass:Base",[["Python","Python"]],[["Classes","Class"],["Functions","Function"],["Groups","Group"]],[[1,0,0,"Base"],[17,0,2,"Functions","Functions"],[5,0,1,"init_db()","init_db"]]);

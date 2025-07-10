@@ -44,7 +44,12 @@ function environment(){
 }
 /* ################################################################### */
 
-/* La funzione generateQuestion() genera una domanda */
+/** Function: generateQuestion()
+*   Description:
+*     La funzione generateQuestion() genera una domanda
+*   Returns:
+*     nulla
+*/
 function generateQuestion(i) {
   buttons.forEach(btn => btn.disabled = false);
 

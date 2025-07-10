@@ -1,49 +1,71 @@
-'''
-Questo file prepara tutto il necessario per gestire un database SQLite
-con una tabella contacts in un'applicazione FastAPI.
-'''
-'''
-Importiamo le librerie necessarie per la gestione del database
-create_engine: crea la connessione al database
-declarative_base: classe base per definire i modelli (tabelle)
-sessionmaker: gestisce le sessioni per le query
-'''
+# File: database.py
+# Descrizione:
+#   Configura la connessione al database SQLite e prepara le sessioni per
+#   le operazioni CRUD (Create, Read, Update, Delete) sulle tabelle.
+#
+# Importa: SQLAlchemy
+#
+#   - create_engine: crea la connessione al database
+#   - declarative_base: classe base per i modelli (tabelle)
+#   - sessionmaker: gestisce le sessioni per le query
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-'''#####################################################################'''
-
-'''
-Configurazione del database
-Usa SQLite come database (file contacts.db nella directory corrente)
-check_same_thread: False permette l'accesso da thread multipli (necessario per FastAPI)
-'''
+###########################################################################################
+# Variable: DATABASE_URL
+# Descrizione:
+#   Prima variabile di configurazione del database.
+#
+#   URL di connessione al database SQLite.
+#
+# Vedi:
+#   engine
 DATABASE_URL = "sqlite:///./questions.db" #NOME DEL DATABASE DA MANIPOLARE!!!!!!
+# Variable: engine
+# Descrizione:
+#   Seconda variabile di configurazione del database.
+#
+#   Oggetto SQLAlchemy che gestisce la connessione al database.
+#
+#   Utilizzando SQLite "apriamo" il file "questions.db", presente nella directory corrente.
+#
+# Parametri:
+#   - DATABASE_URL: URL di connessione al database.
+#   - connect_args: quando impostato a False permette l'accesso da thread multipli (necessario per FastAPI)
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
-'''###############################################################################'''
-'''
-Configurazione della sessione del database
-sessionmaker: le modifiche devono essere confermate manualmente
-autocommit: non salva automaticamente ad ogni operazione
-autoflush: collega al database configurato sopra
-'''
+# Variable: SessionLocal
+# Descrizione:
+#   Terza variabile di configurazione del database.
+#
+#   Gestisce le sessioni per le operazioni CRUD (Create, Read, Update, Delete)
+#   sulle tabelle del database.
+#
+#   Utilizza sessionmaker di SQLAlchemy per creare sessioni.
+#
+#   Parametri sessionmaker::
+#     - autocommit: False, significa che le modifiche devono essere confermate manualmente
+#     - autoflush: False, significa che non si esegue automaticamente il flush delle modifiche
+#     - bind: engine, associa la sessione al motore del database creato sopra
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-''''##########################################################################'''
-
-'''
-Base per i modelli del database
-Classe base da cui erediteranno tutti i modelli (tabelle)
-declarative_base è una classe fornita da SQLAlchemy
-'''
+# Class: Base
+# Descrizione:
+#   Classe Base da cui erediteranno tutti i modelli (tabelle)
+#
+#   Creata tramite il costruttore declarative_base() di SQLAlchemy.
+#
+# Classi Figlie::
+#   - Category
+#   - Question
+#   - Composer
 Base = declarative_base()
-'''###############################################################################'''
-
-'''
-Inizializza il database
-Importa i modelli (definizioni delle tabelle)
-Crea tutte le tabelle nel database se non esistono già
-'''
+#################################################################################################
+# Function: init_db()
+# Description:
+#   Inizializza il database dell'applicazione.
+#   Importa i modelli delle tabelle e crea tutte le tabelle definite nei modelli,
+#   se non esistono già nel database. Questa funzione va chiamata all'avvio
+#   dell'applicazione per assicurarsi che la struttura del database sia pronta.
 def init_db():
     import models  # Importiamo i modelli per manipolare le tabelle
     Base.metadata.create_all(bind=engine)
-'''###############################################################################'''
+####################################################################################

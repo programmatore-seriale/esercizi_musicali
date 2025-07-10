@@ -1,0 +1,25 @@
+-i: cartella con il codice da documentare
+
+-o HTML: specifica che vuoi l’output in HTML
+
+docs: cartella dove verrà salvata la documentazione [docs non va messo, direttamente l'indirizzo della cartella
+
+-p: directory dove Natural Docs salva la configurazione del progetto
+
+Principali simboli/elementi documentabili
+	File: Descrive il file/modulo.
+	Module: (Sinonimo di File, usato in alcuni linguaggi.)
+	Class: Documenta una classe.
+	Function: Documenta una funzione o un metodo.
+	Variable: Documenta una variabile globale o di classe.
+	Constant: Documenta una costante.
+	Enum: Documenta un enumeratore (se usato).
+	Property: Documenta una proprietà di classe.
+
+Sezioni aggiuntive (usate nei commenti di simboli)
+	Description: Descrizione dettagliata dell’elemento.
+	Parameters: Elenco dei parametri di una funzione/metodo.
+	Returns: Cosa restituisce la funzione/metodo.
+	Examples: Esempi d’uso.
+	See Also: Riferimenti ad altre funzioni/classi.
+

@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("get",["Function"],[["get",,[["@app",,,,0,"File2:main.py:@app.get"]]]]);

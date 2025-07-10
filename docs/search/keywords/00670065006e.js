@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("gen",["Function"],[["generateQuestion",,[[,,,,0,"File:quiz.js:generateQuestion"]]]]);

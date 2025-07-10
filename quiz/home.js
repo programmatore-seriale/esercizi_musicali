@@ -28,7 +28,12 @@ function moveSlide(direction) {
 }
 /* ######################## */
 
-/* SEZIONE DALTONICI */
+/** SEZIONE DALTONICI
+*   Questa sezione permette di attivare una modalità per i daltonici
+*   banalmente, quando si clicca sull'icona, viene aggiunta una classe al body
+*   che quindi applica il realtivo stile CSS a tutti i propri figli
+*   cioè a tutto il documento
+*/
 const icon = document.querySelector('.colorblind-friendly-colors');
 document.addEventListener('DOMContentLoaded', function() {
   if (icon) {

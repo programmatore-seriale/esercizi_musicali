@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File:quiz.js","quiz.js");NDSummary.OnSummaryLoaded("File:quiz.js",[["JavaScript","JavaScript"]],[["Functions","Function"],["Groups","Group"]],[[3,0,1,"Functions","Functions"],[4,0,0,"generateQuestion()","generateQuestion"]]);

@@ -1,0 +1,1 @@
+﻿NDContentPage.OnToolTipsLoaded({1:"<div class=\"NDToolTip TClass LPython\"><div class=\"TTSummary\">Classe Base da cui erediteranno tutti i modelli (tabelle)</div></div>"});

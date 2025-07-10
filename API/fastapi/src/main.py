@@ -32,6 +32,13 @@ OCCHIO A object_router, DEVE ESSERE UGUALE A QUELLO DEFINITO IN routes/contacts.
 app.include_router(object_router)
 '''################################################################################'''
 
+"""
+    Function: @app.get()
+    Description:
+        Gestisce la richiesta GET per la root dell'API.
+    Returns:
+        Un messaggio di benvenuto.
+"""
 @app.get("/")
 def read_root():
     return {"message": "Welcome to Esercizi Musicali API"}
