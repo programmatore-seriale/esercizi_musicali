@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("PythonClass:ComposersCreate","ComposersCreate");NDSummary.OnSummaryLoaded("PythonClass:ComposersCreate",[["Python","Python"]],[["Classes","Class"]],[[50,0,0,"ComposersCreate"]]);

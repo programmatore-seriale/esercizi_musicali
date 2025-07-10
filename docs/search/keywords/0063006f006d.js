@@ -1,1 +1,1 @@
-﻿NDSearch.OnPrefixDataLoaded("com",["Class"],[["Composer",,[[,,,,0,"File2:models.py:Composer","PythonClass:Composer"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("com",["Class"],[["Composer",,[[,,,,0,"File2:models.py:Composer","PythonClass:Composer"]]],["ComposersCreate",,[[,,,,0,"File2:schemas.py:ComposersCreate","PythonClass:ComposersCreate"]]],["ComposersResponse",,[[,,,,0,"File2:schemas.py:ComposersResponse","PythonClass:ComposersResponse"]]]]);

@@ -1,1 +1,1 @@
-﻿NDSearch.OnPrefixDataLoaded("cat",["Class"],[["Category",,[[,,,,0,"File2:models.py:Category","PythonClass:Category"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("cat",["Class"],[["CategoriesResponse",,[[,,,,0,"File2:schemas.py:CategoriesResponse","PythonClass:CategoriesResponse"]]],["Category",,[[,,,,0,"File2:models.py:Category","PythonClass:Category"]]]]);

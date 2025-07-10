@@ -8,22 +8,27 @@
 
 <script type="text/javascript">var q = window.location.search;if (q.startsWith("?Theme=")){var t = q.slice(7);var e = t.indexOf(";");if (e != -1){  t = t.slice(0, e);  }document.documentElement.classList.add(t + "Theme")}</script>
 
-<a name="Question"></a><a name="Topic2"></a><div class="CTopic TClass LPython first">
+<a name="models.py"></a><a name="Topic2"></a><div class="CTopic TFile LPython first">
+ <div class="CTitle">models.py</div>
+ <div class="CBody"><div class="CHeading">Descrizione</div><p>In questo file definiamo i modelli dei nostri oggetti.&nbsp; I modelli sono le classi che rappresentano le tabelle del database.</p><div class="CHeading">Importa</div><ul><li><p>Column, Integer, String: classi di SQLAlchemy per definire le colonne</p></li><li><p>Base: classe base per i modelli, definita in database.py</p></li><li><p>database: modulo che contiene la classe Base e la funzione init_db</p></li></ul></div>
+</div>
+
+<a name="Question"></a><a name="Topic7"></a><div class="CTopic TClass LPython">
  <div class="CTitle">Question</div>
- <div class="NDClassPrototype HasParents" id="NDClassPrototype2"><a class="CPEntry Parent TClass" href="../index.html#File2:database.py:Base" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,1);" onmouseout="NDContentPage.OnLinkMouseOut(event);" ><div class="CPName">Base</div></a><div class="CPEntry TClass Current"><div class="CPName">Question</div></div></div>
- <div class="CBody"><div class="CHeading">Description</div><p>Modello che rappresenta una domanda nel database.&nbsp; Attributes: id (int): Identificatore unico della domanda.&nbsp; composer_id (int): Identificatore del compositore associato alla domanda.&nbsp; audio (str): Percorso del file audio associato alla domanda.&nbsp; image (str): Percorso dell'immagine associata alla domanda.&nbsp; correct (str): Risposta corretta alla domanda.&nbsp; explanation (str): Spiegazione della risposta corretta.</p></div>
+ <div class="NDClassPrototype HasParents" id="NDClassPrototype7"><a class="CPEntry Parent TClass" href="../index.html#File2:database.py:Base" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,1);" onmouseout="NDContentPage.OnLinkMouseOut(event);" ><div class="CPName">Base</div></a><div class="CPEntry TClass Current"><div class="CPName">Question</div></div></div>
+ <div class="CBody"><div class="CHeading">Descrizione</div><p>Modello che rappresenta una domanda nel database.</p><div class="CHeading">Parametri</div><ul><li><p>id (int, primary_key=True, index=True): Identificatore unico della domanda.</p></li><li><p>composer_id (int): Identificatore del compositore associato alla domanda.</p></li><li><p>audio (str): Percorso del file audio associato alla domanda.</p></li><li><p>image (str): Percorso dell'immagine associata alla domanda.</p></li><li><p>correct (str): Risposta corretta alla domanda.</p></li><li><p>explanation (str): Spiegazione della risposta corretta.</p></li></ul></div>
 </div>
 
-<a name="Composer"></a><a name="Topic6"></a><div class="CTopic TClass LPython">
+<a name="Composer"></a><a name="Topic19"></a><div class="CTopic TClass LPython">
  <div class="CTitle">Composer</div>
- <div class="NDClassPrototype HasParents" id="NDClassPrototype6"><a class="CPEntry Parent TClass" href="../index.html#File2:database.py:Base" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,1);" onmouseout="NDContentPage.OnLinkMouseOut(event);" ><div class="CPName">Base</div></a><div class="CPEntry TClass Current"><div class="CPName">Composer</div></div></div>
- <div class="CBody"><div class="CHeading">Description</div><p>Modello che rappresenta un compositore nel database.&nbsp; Attributes: id (int): Identificatore unico del compositore.&nbsp; name (str): Nome del compositore.&nbsp; category_id (int): Identificatore della categoria a cui appartiene il compositore.&nbsp; image (str): Percorso dell'immagine associata al compositore.</p></div>
+ <div class="NDClassPrototype HasParents" id="NDClassPrototype19"><a class="CPEntry Parent TClass" href="../index.html#File2:database.py:Base" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,1);" onmouseout="NDContentPage.OnLinkMouseOut(event);" ><div class="CPName">Base</div></a><div class="CPEntry TClass Current"><div class="CPName">Composer</div></div></div>
+ <div class="CBody"><p>Descrizione: Modello che rappresenta un compositore nel database.</p><div class="CHeading">Attributi</div><ul><li><p>id (int, primary_key=True, index=True): Identificatore unico del compositore.</p></li><li><p>name (str, nullable=False): Nome del compositore.</p></li><li><p>category_id (int, nullable=False): Identificatore della categoria a cui appartiene il compositore.</p></li><li><p>image (str, nullable=False): Percorso dell'immagine associata al compositore.</p></li></ul></div>
 </div>
 
-<a name="Category"></a><a name="Topic7"></a><div class="CTopic TClass LPython last">
+<a name="Category"></a><a name="Topic21"></a><div class="CTopic TClass LPython last">
  <div class="CTitle">Category</div>
- <div class="NDClassPrototype HasParents" id="NDClassPrototype7"><a class="CPEntry Parent TClass" href="../index.html#File2:database.py:Base" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,1);" onmouseout="NDContentPage.OnLinkMouseOut(event);" ><div class="CPName">Base</div></a><div class="CPEntry TClass Current"><div class="CPName">Category</div></div></div>
- <div class="CBody"><div class="CHeading">Description</div><p>Modello che rappresenta una categoria nel database.&nbsp; Attributes: id (int): Identificatore unico della categoria.&nbsp; name (str): Nome della categoria.</p></div>
+ <div class="NDClassPrototype HasParents" id="NDClassPrototype21"><a class="CPEntry Parent TClass" href="../index.html#File2:database.py:Base" target="_top" onmouseover="NDContentPage.OnLinkMouseOver(event,1);" onmouseout="NDContentPage.OnLinkMouseOut(event);" ><div class="CPName">Base</div></a><div class="CPEntry TClass Current"><div class="CPName">Category</div></div></div>
+ <div class="CBody"><p>Descrizione: Modello che rappresenta una categoria nel database.</p><div class="CHeading">Attributi</div><ul><li><p>id (int): Identificatore unico della categoria.</p></li><li><p>name (str): Nome della categoria.</p></li></ul></div>
 </div>
 
 </body></html>

@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("PythonClass:ComposersCreate",{50:"<div class=\"NDToolTip TClass LPython\"><div class=\"NDClassPrototype\" id=\"NDClassPrototype50\"><div class=\"CPEntry TClass Current\"><div class=\"CPName\">ComposersCreate</div></div></div><div class=\"TTSummary\">Schema per la creazione di un nuovo compositore.</div></div>"});

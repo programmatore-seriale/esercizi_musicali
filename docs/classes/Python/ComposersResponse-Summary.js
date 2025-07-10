@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("PythonClass:ComposersResponse","ComposersResponse");NDSummary.OnSummaryLoaded("PythonClass:ComposersResponse",[["Python","Python"]],[["Classes","Class"]],[[51,0,0,"ComposersResponse"]]);

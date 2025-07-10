@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("PythonClass:CategoriesResponse",{52:"<div class=\"NDToolTip TClass LPython\"><div class=\"NDClassPrototype\" id=\"NDClassPrototype52\"><div class=\"CPEntry TClass Current\"><div class=\"CPName\">CategoriesResponse</div></div></div><div class=\"TTSummary\">Schema per le risposte dell\'API riguardanti le categorie.</div></div>"});

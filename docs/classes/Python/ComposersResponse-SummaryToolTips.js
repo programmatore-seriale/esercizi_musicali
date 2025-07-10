@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("PythonClass:ComposersResponse",{51:"<div class=\"NDToolTip TClass LPython\"><div class=\"NDClassPrototype\" id=\"NDClassPrototype51\"><div class=\"CPEntry TClass Current\"><div class=\"CPName\">ComposersResponse</div></div></div><div class=\"TTSummary\">Schema per le risposte dell\'API riguardanti i compositori.</div></div>"});

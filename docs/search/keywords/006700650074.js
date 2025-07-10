@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("get",["Function"],[["get",,[["router",,,,0,"File2:routes.py:router.get"]]],["get_db",,[[,,,,0,"File2:routes.py:get_db"]]]]);

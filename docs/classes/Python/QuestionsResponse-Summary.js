@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("PythonClass:QuestionsResponse","QuestionsResponse");NDSummary.OnSummaryLoaded("PythonClass:QuestionsResponse",[["Python","Python"]],[["Classes","Class"]],[[49,0,0,"QuestionsResponse"]]);

@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("rou",["Variable","File"],[["router",,[[,,,,0,"File2:routes.py:router"]]],["routes",,[[,"routes.py",,,1,"File2:routes.py:routes.py"]]]]);

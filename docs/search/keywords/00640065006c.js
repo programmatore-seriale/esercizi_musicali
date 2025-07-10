@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("del",["Function"],[["delete",,[["router",,,,0,"File2:routes.py:router.delete"]]]]);

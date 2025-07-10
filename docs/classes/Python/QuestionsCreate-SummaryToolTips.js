@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("PythonClass:QuestionsCreate",{43:"<div class=\"NDToolTip TClass LPython\"><div class=\"NDClassPrototype\" id=\"NDClassPrototype43\"><div class=\"CPEntry TClass Current\"><div class=\"CPName\">QuestionsCreate</div></div></div><div class=\"TTSummary\">Schema per la creazione di una nuova domanda.</div></div>"});

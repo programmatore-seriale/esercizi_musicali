@@ -1,1 +1,1 @@
-﻿NDSearch.OnPrefixDataLoaded("que",["Class"],[["Question",,[[,,,,0,"File2:models.py:Question","PythonClass:Question"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("que",["Class"],[["Question",,[[,,,,0,"File2:models.py:Question","PythonClass:Question"]]],["QuestionsCreate",,[[,,,,0,"File2:schemas.py:QuestionsCreate","PythonClass:QuestionsCreate"]]],["QuestionsResponse",,[[,,,,0,"File2:schemas.py:QuestionsResponse","PythonClass:QuestionsResponse"]]]]);

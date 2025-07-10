@@ -1,1 +1,1 @@
-﻿NDMenu.OnSectionLoaded("classes.js",[[1,"Base"],[1,"Category"],[1,"Composer"],[1,"Question"]]);
+﻿NDMenu.OnSectionLoaded("classes.js",[[1,"Base"],[1,"CategoriesResponse"],[1,"Category"],[1,"Composer"],[1,"ComposersCreate"],[1,"ComposersResponse"],[1,"Question"],[1,"QuestionsCreate"],[1,"QuestionsResponse"]]);
