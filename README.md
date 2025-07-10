@@ -25,7 +25,7 @@ Il progetto è pensato per essere accessibile e facilmente estendibile.
 
 ## Struttura della repository
 ```
-C:.
+root
 │   2048.html
 │   2048.js
 │   index.html
@@ -140,6 +140,6 @@ Apri una issue o una pull request su GitHub.
 
 ## Licenza
 
-Specificare qui la licenza del progetto (MIT, GPL, ecc.).
+
 
 ---

@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Mozart</title>
+  <title>Svolgimento Quiz</title>
     <!-- Da inserire nel head di tutti i file del quiz -->
     <link rel="stylesheet" href="../style.css"> <!-- Per applicare lo stile CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <!-- Per far funzionare l'icona di home -->
@@ -20,22 +20,22 @@
     </a>
     <!-- ################################################# -->
     <div class="score-container">
-        <h1 class="score" id="score">
-            <!-- Il punteggio viene aggiornato via JS -->
+        <h1 class="score" id="score" tabindex="0" aria-live="polite"> <!-- Aria polite, annuncio non invasivo -->
+            Buona Fortuna <!-- Il punteggio verrà poi aggiornato da JavaScript -->
         </h1>
     </div>
     <div class="quiz-container" aria-label="Quiz musicale">
         <div class="audio-image-container">
-            <img src="" alt="Esercizio senza immagine" class="audio-img" id="audio-img">
+            <img src="" alt="Esercizio senza immagine" class="audio-img" id="audio-img" tabindex="0" aria-label="Immagine del brano da riconoscere">
             <audio controls class="audio-inside" id="audio-inside" aria-label="Audio del brano da riconoscere">
                 <source src="" type="audio/mpeg">
                 Il tuo browser non supporta l'audio HTML5.
             </audio>
         </div>
-        <div class="question" id="question-text">
+        <div class="question" id="question-text" tabindex="0">
             Ascolta questo file audio, che brano, tra quelli che abbiamo ascoltato in classe, ti sembra di riconoscere?
         </div>
-        <div class="answers" role="group" aria-label="Risposte possibili">
+        <div class="answers" role="group" tabindex="0" aria-label="Qui trovi 4 bottoni con le risposte possibili">
             <button class="answer-button red" id="answer-button-red"
                 data-correct=""
                 explanation=""

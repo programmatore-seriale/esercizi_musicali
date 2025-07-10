@@ -61,12 +61,8 @@ fetch('http://127.0.0.1:8000/composers/') //riga che fa una HTTP request alle AP
         const img = document.createElement('img');
         img.src = composer.image; // Assicurati che composer.image sia già relativo
         img.alt = composer.name ? `Foto di ${composer.name}` : "Immagine compositore";
+        img.title = composer.name; // Tooltip con il nome del compositore
         a.appendChild(img);
-        // Testo alternativo visibile solo agli screen reader
-        const srText = document.createElement('span');
-        srText.className = "sr-only";
-        srText.textContent = composer.name;
-        a.appendChild(srText);
         slidesContainer.appendChild(a);
     });
   })
