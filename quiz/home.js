@@ -28,6 +28,17 @@ function moveSlide(direction) {
 }
 /* ######################## */
 
+/* SEZIONE DALTONICI */
+const icon = document.querySelector('.colorblind-friendly-colors');
+document.addEventListener('DOMContentLoaded', function() {
+  if (icon) {
+    icon.addEventListener('click', function() {
+      document.body.classList.toggle('colorblind-mode');
+    });
+  }
+});
+/* ######################################################### */
+
 /* Manipolazione del database per ricondurci ad un JSON */
 const config = {
   locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.2/${file}`

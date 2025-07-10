@@ -1,3 +1,4 @@
+/* --- BASE --- */
 body {
     font-family: Arial, sans-serif;
     background: #faf8ef;
@@ -12,56 +13,98 @@ body {
     align-items: center;
     justify-content: flex-start;
 }
+body.colorblind-mode {
+    background: #FFF !important;
+    color: #000 !important;
+}
 
+/* --- TESTI PRINCIPALI --- */
+h1, p, .score, #scoreBox {
+    font-weight: bold;
+    margin: 0.5em 0;
+}
 h1 {
     margin-top: 30px;
     font-size: 2.5em;
-    font-weight: 700;
     color: #27ae60;
     letter-spacing: 2px;
 }
-
+body.colorblind-mode h1{
+    color: #009E73 !important;
+}
 p, .score, #scoreBox {
     font-size: 2em;
-    font-weight: bold;
     color: #27ae60;
-    margin: 0.5em 0;
+}
+body.colorblind-mode p,
+body.colorblind-mode .score,
+body.colorblind-mode #scoreBox {
+    color: #009E73 !important;
 }
 
-.actions {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-}
-
-button, .actions button, #startBtn {
-    padding: 8px 24px;
-    font-size: 1.5em;
-    border-radius: 10px;
-    background-color: #27ae60;
-    color: white;
+/* --- BOTTONI GENERICI --- */
+button, .actions button, #startBtn, .styled-btn, .delete-composer-btn {
     border: none;
+    border-radius: 10px;
+    font-size: 1.5em;
     cursor: pointer;
-    margin: 0 10px;
     transition: background 0.2s;
 }
-
-button:hover, .actions button:hover, #startBtn:hover {
+button, .actions button, #startBtn {
+    padding: 8px 24px;
+    background-color: #27ae60;
+    color: white;
+    margin: 0 10px;
+}
+body.colorblind-mode button, .actions button, #startBtn {
+    background-color: #009E73 !important;
+}
+.styled-btn {
+    background: #27ae60;
+    color: #fff;
+    padding: 10px 18px;
+    font-size: 1.1em;
+    margin-top: 8px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+body.colorblind-mode .styled-btn {
+    background: #009E73 !important;
+}
+.delete-composer-btn {
+    margin-left: 10px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 4px;
+    padding: 4px 10px;
+}
+body.colorblind-mode .delete-composer-btn {
+    background-color: #D55E00 !important;
+}
+button:hover, .actions button:hover, #startBtn:hover, .styled-btn:hover { /* Gli hover non li cambierei in quanto altrimenti non si capisce più quando ci andiamo sopra */
     background-color: #219150;
 }
+.delete-composer-btn:hover { /* Gli hover non li cambierei in quanto altrimenti non si capisce più quando ci andiamo sopra */
+    background-color: #c0392b;
+}
 
-/* --- HOME ICON --- */
-.home-link {
+/* --- HOME ICON & COLORBLIND ICON --- */
+.home-link, .colorblind-friendly-colors {
     position: absolute;
     top: 20px;
-    left: 20px;
     z-index: 100;
     display: block;
 }
-
-.fa-solid.fa-house {
+.home-link { left: 20px; }
+.colorblind-friendly-colors { right: 20px; }
+.colorblind-friendly-colors:hover { cursor: pointer; }
+.fa-solid.fa-house, .fa.fa-low-vision {
     font-size: 2em;
     color: #776e65;
+}
+body.colorblind-mode .fa-solid.fa-house,
+body.colorblind-mode .fa.fa-low-vision {
+    color: #0072B2 !important;
 }
 
 /* --- MEMORY --- */
@@ -69,20 +112,18 @@ button:hover, .actions button:hover, #startBtn:hover {
     display: grid;
     justify-content: center;
     grid-gap: 16px;
-/*
-    Queste due proprietà CSS definiscono la struttura di una griglia utilizzando il layout CSS Grid.
-    "grid-template-columns: repeat(6, 140px);" crea sei colonne, ognuna larga 140 pixel.
-    Il comando "repeat(6, 140px)" è una scorciatoia che evita di scrivere sei volte "140px".
-    "grid-template-rows: repeat(2, 210px);" crea due righe, ognuna alta 210 pixel.
-    Anche qui, "repeat(2, 210px)" semplifica la scrittura.
-    Insieme, queste regole impostano una griglia di 6 colonne per 2 righe, dove ogni cella ha dimensioni fisse.
-*/
+    /* Queste due proprietà CSS definiscono la struttura di una griglia utilizzando il layout CSS Grid.
+       "grid-template-columns: repeat(6, 140px);" crea sei colonne, ognuna larga 140 pixel.
+       Il comando "repeat(6, 140px)" è una scorciatoia che evita di scrivere sei volte "140px".
+       "grid-template-rows: repeat(2, 210px);" crea due righe, ognuna alta 210 pixel.
+       Anche qui, "repeat(2, 210px)" semplifica la scrittura.
+       Insieme, queste regole impostano una griglia di 6 colonne per 2 righe, dove ogni cella ha dimensioni fisse.
+    */
     grid-template-columns: repeat(6, 140px);
     grid-template-rows: repeat(2, 210px);
     perspective: 1000px;
     margin: 30px 0;
 }
-
 .card {
     height: 210px;
     width: 140px;
@@ -94,20 +135,14 @@ button:hover, .actions button:hover, #startBtn:hover {
     cursor: pointer;
     transform: rotateY(0deg);
 }
-
-.card.flipped {
-    transform: rotateY(180deg);
-}
-
+.card.flipped { transform: rotateY(180deg); }
 .front-image {
     width: 100%;
     height: auto;
     display: block;
     object-fit: contain;
 }
-
-.front,
-.back {
+.front, .back {
     backface-visibility: hidden;
     position: absolute;
     border-radius: 10px;
@@ -120,13 +155,11 @@ button:hover, .actions button:hover, #startBtn:hover {
     align-items: center;
     font-size: 50px;
 }
-
 .card .front {
     background-color: white;
     transform: rotateY(180deg);
     overflow: hidden;
 }
-
 .card .back {
     background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='30' height='60' patternTransform='scale(2) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240,6.7%,17.6%,1)'/><path d='M9.27 0 0 6.48v23.49l15 10V60h5.16L30 53.46V29.97L15 19.96V0Zm5.83 0L30 9.9V6.48L20.26 0ZM15 23.4l9.9 6.57-9.9 6.58-9.9-6.58ZM0 50.1v3.36l9.22 6.48.1.06h5.6l-.1-.06z'  stroke-width='1' stroke='none' fill='hsla(47,80.9%,61%,1)'/><path d='M0 0v3.4L5 0zm24.48 0L30 3.4V0zM15 26.2l-5.68 3.77L15 33.73l5.68-3.76Zm15 30.2L24.48 60H30Zm-30 0V60h5z'  stroke-width='1' stroke='none' fill='hsla(4.1,89.6%,58.4%,1)'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>");
     background-position: center center;
@@ -150,6 +183,11 @@ button:hover, .actions button:hover, #startBtn:hover {
     padding: 30px;
     z-index: 10;
 }
+body.colorblind-mode #winning-message {
+    background: #ffffff !important;
+    border-color: #009E73 !important;
+    color: #009E73 !important;
+}
 
 /* --- SNAKE --- */
 .canvas-container {
@@ -157,7 +195,6 @@ button:hover, .actions button:hover, #startBtn:hover {
     display: inline-block;
     margin-bottom: 20px;
 }
-
 canvas {
     width: "400px";
     height: "400px";
@@ -166,7 +203,9 @@ canvas {
     display: block;
     margin: 0 auto;
 }
-
+body.colorblind-mode canvas {
+    border-color: #009E73 !important;
+}
 #gameOverBox {
     display: none;
     position: absolute;
@@ -184,7 +223,6 @@ canvas {
     padding: 30px;
     z-index: 10;
 }
-
 #scoreBox {
     font-size: 4em;
     color: #27ae60;
@@ -192,6 +230,10 @@ canvas {
     min-width: 120px;
     text-align: center;
 }
+body.colorblind-mode #scoreBox {
+    color: #009E73 !important;
+}
+
 /* --- Quiz Home --- */
 .heading {
     display: block;
@@ -200,80 +242,65 @@ canvas {
     width: auto; 
 }
 .slider {
-  position: relative;
-  width: 100%;
-  max-width: 1000px;
-  margin: 10px auto 0 auto; /* margine superiore ridotto a 10px */
-  overflow: hidden;
-  border-radius: 12px;
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 10px auto 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
 }
-
 .slides {
     min-height: 40vh;
     display: flex;
     transition: transform 0.5s ease-in-out;
 }
-
 .slides img {
-  width: 60vw;         /* Larghezza pari al 60% della larghezza dello schermo */
-  max-width: 400px;    /* Non superare mai i 400px */
-  height: 40vh;        /* Altezza fissa per tutte le immagini */
-  flex-shrink: 0;
-  object-fit: cover;  /* Ritaglia e centra l'immagine */
-  margin: 0 auto;
-  border-radius: 18px; /* Arrotonda gli angoli delle immagini */
+    width: 60vw;
+    max-width: 400px;
+    height: 40vh;
+    flex-shrink: 0;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 18px;
 }
-
 .slides a {
-    flex: 0 0 auto; /* Impedisce che gli elementi si restringano */
+    flex: 0 0 auto;
     text-decoration: none;
-    height: 40vh;           /* stessa altezza delle immagini */
+    height: 40vh;
     display: flex;
-    align-items: center;    /* centra l'immagine verticalmente */
+    align-items: center;
     justify-content: center;
 }
-
-.slides a:hover { /* Leggero effetto hover */
-  opacity: 0.8;
-  transform: scale(1.05);
-  transition: transform 0.3s ease, opacity 0.3s ease;
+.slides a:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
-
-.slides a:not(:last-child) {
-  margin-right: 16px;
-}
-
+.slides a:not(:last-child) { margin-right: 16px; }
 .nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.7);
-  border: none;
-  font-size: 2rem;
-  padding: 0 10px;
-  cursor: pointer;
-  z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    font-size: 2rem;
+    padding: 0 10px;
+    cursor: pointer;
+    z-index: 1;
+    border: none;
 }
-
-.nav.left {
-  left: 0;
+body.colorblind-mode .nav {
+    background-color: #fff;
 }
+.nav.left { left: 0; }
+.nav.right { right: 0; }
 
-.nav.right {
-  right: 0;
-}
-
-/* --- QUIZ test --- */
-
-.score-container{
+/* --- QUIZ --- */
+.score-container {
     display: block;
     max-height: 10vh;
     width: 100vw;
 }
-.score-container h1{
-    font-size: 3vw;
-}
-
+.score-container h1 { font-size: 3vw; }
 .quiz-container {
     background: #4c347c;
     color: white;
@@ -289,102 +316,133 @@ canvas {
     overflow: auto;
     box-sizing: border-box;
 }
-
-.quiz-container * {
-    box-sizing: border-box;
+body.colorblind-mode .quiz-container {
+    background: #CC79A7;
 }
-
+.quiz-container * { box-sizing: border-box; }
 .audio-image-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* centra tutto in orizzontale */
-    gap: 0.1vh;           /* spazio tra immagine e audio */
+    align-items: center;
+    gap: 0.1vh;
     max-height: 30vh;
 }
-
 .audio-img {
     display: block;
     margin: 0 auto 20px auto;
     max-width: 100%;
-    width: 80vw;        /* responsivo: 80% della larghezza viewport */
+    width: 80vw;
     max-height: 22vh;
     height: auto;
     width: auto;
-    border-radius: 16px; /* opzionale: angoli arrotondati */
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15); /* opzionale: ombra */
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
     object-fit: contain;
 }
-
+body.colorblind-mode .audio-img {
+    box-shadow: 0 4px 16px #000;
+}
 .audio-inside {
-    width: 30vw;      /* regola la larghezza dei controlli audio */
+    width: 30vw;
     height: 5vh;
     background: rgba(255,255,255,0.7);
     border-radius: 8px;
 }
-
+body.colorblind-mode .audio-inside {
+    background: #fff;
+}
 .question {
-  margin: 20px 0;
-  font-size: 1.2vw;
+    margin: 20px 0;
+    font-size: 1.2vw;
 }
-
 .answers {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
-
 .answer-button {
-  padding: 2vh;
-  border: none;
-  font-size: 1.2vw;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: transform 0.2s;
-}
-
-.answer-button:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-}
-
-.red { background-color: #8B0000; color: white; }
-.red:hover { background-color: #ff0000 !important; }
-.blue { background-color: #001F5B; color: white; }
-.blue:hover { background-color: #0055ff !important; }
-.orange { background-color: #D2691E; color: white; }
-.orange:hover { background-color: #ff6a00 !important; }
-.green { background-color: #006400; color: white; }
-.green:hover { background-color: #00b100 !important; }
-.right-answer{background-color: #00b100 !important; color: white !important;}
-.right-answer:hover{background-color: #00b100 !important; color: white !important;}
-.wrong-answer{background-color: #b10000 !important; color: white !important; opacity: 0.3;}
-.wrong-answer:hover{background-color: #b10000 !important; color: white !important; opacity: 0.3;}
-.next-restart button{
-    background-color: #14123a;
-    margin-top: 3vh;
-    width: 20vw;
-    padding: 15px;
+    padding: 2vh;
     border: none;
     font-size: 1.2vw;
     font-weight: bold;
     cursor: pointer;
     border-radius: 8px;
     transition: transform 0.2s;
+}
+.answer-button:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+.red { background-color: #8B0000; color: white; }
+body.colorblind-mode .red { background-color: #D55E00 !important}
+.red:hover { background-color: #ff0000 !important; }
+.blue { background-color: #001F5B; color: white; }
+body.colorblind-mode .blue { background-color: #0072B2 !important}
+.blue:hover { background-color: #0055ff !important; }
+.orange { background-color: #D2691E; color: white; }
+body.colorblind-mode .orange { background-color: #E69F00 !important}
+.orange:hover { background-color: #ff6a00 !important; }
+.green { background-color: #006400; color: white; }
+body.colorblind-mode .green { background-color: #009E73 !important}
+.green:hover { background-color: #00b100 !important; }
+.right-answer, .right-answer:hover {
+    background-color: #00b100 !important;
+    color: white !important;
+}
+body.colorblind-mode .right-answer, .right-answer:hover {
+    background-color: #009E73 !important;
+}
+.wrong-answer, .wrong-answer:hover {
+    background-color: #b10000 !important;
+    color: white !important;
+    opacity: 0.3;
+}
+body.colorblind-mode .wrong-answer,
+body.colorblind-mode .wrong-answer:hover {
+    background-color: #D55E00 !important;
+    color: white !important;
+    opacity: 0.3;
+}
+.next-restart button {
+    background-color: #14123a;
+    margin-top: 3vh;
+    width: 20vw;
+    padding: 15px;
+    font-size: 1.2vw;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: transform 0.2s;
     margin-left: auto;
     margin-right: auto;
     display: none;
 }
-.next-restart button:hover{
-    transform: scale(1.05);
-    transition: transform 0.3s ease;
-    background-color: #2c296a;
+body.colorblind-mode .next-restart button {
+    background-color: #56B4E9;
 }
-
+.next-restart button:hover {
+    transform: scale(1.05);
+    background-color: #2c296a !important;
+}
+body.colorblind-mode .next-restart button:hover {
+    transform: scale(1.05);
+    background-color: #0072B2 !important;
+}
 .result {
-  margin-top: 2vh;
-  font-size: 1.4vw;
-  font-weight: bold;
+    margin-top: 2vh;
+    font-size: 1.4vw;
+    font-weight: bold;
+}
+.result.right-result {
+    color: lightgreen !important;
+}
+body.colorblind-mode .result.right-result {
+    color: #000 !important;
+}
+.result.wrong-result {
+    color: red !important;
+}
+body.colorblind-mode .result.wrong-result {
+    color: #000 !important;
 }
 
 /* --- user_questions.html --- */
@@ -403,18 +461,9 @@ canvas {
     justify-content: space-between;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
-.delete-composer-btn {
-    margin-left: 10px;
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 4px 10px;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.delete-composer-btn:hover {
-    background-color: #c0392b;
+body.colorblind-mode .users-composers-list li {
+    background: #fff !important;
+    box-shadow: 0 1px 3px #000 !important;
 }
 .styled-form {
     background: #fff;
@@ -426,27 +475,30 @@ canvas {
     display: flex;
     flex-direction: column;
     gap: 18px;
-    align-items: center; /* <--- centra tutto orizzontalmente */
+    align-items: center;
 }
-
+body.colorblind-mode .styled-form {
+    box-shadow: 0 2px 12px #0072B2 !important;
+}
 .form-group {
     display: flex;
     flex-direction: column;
-    align-items: center; /* <--- centra label e input */
+    align-items: center;
     gap: 6px;
     width: 100%;
 }
-
 .styled-form label {
     font-weight: 600;
     color: #4c347c;
     margin-bottom: 2px;
-    text-align: center; /* <--- centra il testo della label */
+    text-align: center;
     width: 100%;
 }
-
+body.colorblind-mode .styled-form label {
+    color: #CC79A7 !important;
+}
 .styled-input {
-    width: 90%; /* leggermente più stretto per un effetto più elegante */
+    width: 90%;
     padding: 8px 12px;
     border: 1.5px solid #bdbdbd;
     border-radius: 6px;
@@ -457,29 +509,18 @@ canvas {
     box-sizing: border-box;
     display: block;
 }
-
+body.colorblind-mode .styled-input {
+    border-color: #fff !important;
+    border: 1.5px solid #009E73 !important;
+    outline: none;
+    background: #fff !important;
+}
 .styled-input:focus {
     border: 1.5px solid #27ae60;
     outline: none;
     background: #fff;
 }
 
-.styled-btn {
-    background: #27ae60;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 10px 18px;
-    font-size: 1.1em;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: background 0.2s;
-}
-
-.styled-btn:hover {
-    background: #219150;
-}
 /* --- 2048 --- */
 #game {
     display: grid;
@@ -488,7 +529,6 @@ canvas {
     justify-content: center;
     margin: 20px auto;
 }
-
 .tile {
     width: 100px;
     height: 100px;
@@ -500,7 +540,6 @@ canvas {
     align-items: center;
     justify-content: center;
 }
-
 .tile[data-value="2"]    { background: #eee4da; }
 .tile[data-value="4"]    { background: #ede0c8; }
 .tile[data-value="8"]    { background: #f2b179; color: white; }
@@ -512,7 +551,6 @@ canvas {
 .tile[data-value="512"]  { background: #edc850; color: white; }
 .tile[data-value="1024"] { background: #edc53f; color: white; }
 .tile[data-value="2048"] { background: #edc22e; color: white; }
-
 .tile-img {
     width: 100%;
     height: 100%;

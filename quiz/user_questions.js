@@ -10,6 +10,16 @@ document.addEventListener("DOMContentLoaded", function() {
   const questionAudioTextbox = document.getElementById("question-audio");
   const questionComposerTextbox = document.getElementById("question-composer");
   const rightAnswerTextbox = document.getElementById("right-answer");
+  /* ################################################################################ */
+
+  /* SEZIONE DALTONICI */
+  const icon = document.querySelector('.colorblind-friendly-colors');
+  if (icon) {
+    icon.addEventListener('click', function() {
+        document.body.classList.toggle('colorblind-mode');
+    });
+  }
+/* ######################################################### */
 
   let userComposers = []; // Array per memorizzare i compositori aggiunti dagli utenti
 

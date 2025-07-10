@@ -12,6 +12,17 @@ const next_button = document.getElementById('next-button');
 const resultDiv = document.getElementById('result');
 /* ########################################################### */
 
+/* SEZIONE DALTONICI */
+const icon = document.querySelector('.colorblind-friendly-colors');
+document.addEventListener('DOMContentLoaded', function() {
+  if (icon) {
+    icon.addEventListener('click', function() {
+      document.body.classList.toggle('colorblind-mode');
+    });
+  }
+});
+/* ######################################################### */
+
 /* Dichiariamo una serie di variabili di ambiente e le impostiamo al valore inziale con la funzione environment*/
 let array = [];
 let i = 0;
@@ -82,7 +93,8 @@ function generateQuestion(i) {
       const explanation = buttons[b].getAttribute('explanation');
       if (isCorrect) {
         resultDiv.textContent = `✔️ Corretto! ${explanation}`;
-        resultDiv.style.color = "lightgreen";
+        resultDiv.classList.remove('wrong-result');
+        resultDiv.classList.add('right-result');
         correctAnswers++;
         buttons.forEach(btn => {
           btn.classList.add('wrong-answer');
@@ -92,7 +104,8 @@ function generateQuestion(i) {
         this.classList.add('right-answer');
       } else {
         resultDiv.textContent = `❌ Risposta sbagliata.`;
-        resultDiv.style.color = "red";
+        resultDiv.classList.remove('right-result');
+        resultDiv.classList.add('wrong-result');
       }
       buttons.forEach(btn => btn.disabled = true);
       currentQuestion++;
