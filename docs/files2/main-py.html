@@ -8,14 +8,28 @@
 
 <script type="text/javascript">var q = window.location.search;if (q.startsWith("?Theme=")){var t = q.slice(7);var e = t.indexOf(";");if (e != -1){  t = t.slice(0, e);  }document.documentElement.classList.add(t + "Theme")}</script>
 
-<a name="Functions"></a><a name="Topic8"></a><div class="CTopic TGroup LPython first">
+<a name="main.py"></a><a name="Topic10"></a><div class="CTopic TFile LPython first">
+ <div class="CTitle">main.py</div>
+ <div class="CBody"><div class="CHeading">Descrizione</div><p>File principale dell'applicazione FastAPI che gestisce le rotte e l'inizializzazione del database.</p><div class="CHeading">Importa</div><ul><li><p>FastAPI: libreria principale che serve a creare e gestire le rotte dell'API.</p></li><li><p>CORSMiddleware: middleware per gestire le richieste CORS (Cross-Origin Resource Sharing).</p></li><li><p>router: oggetto router che definisce le rotte dell'API.</p></li><li><p>init_db: funzione per inizializzare il database, definita in database.py.</p></li></ul></div>
+</div>
+
+<a name="Variables"></a><a name="Topic15"></a><div class="CTopic TGroup LPython">
+ <div class="CTitle">Variables</div>
+</div>
+
+<a name="app"></a><a name="Topic18"></a><div class="CTopic TVariable LPython">
+ <div class="CTitle">app</div>
+ <div id="NDPrototype18" class="NDPrototype"><div class="PSection PPlainSection">app</div></div>
+ <div class="CBody"><p>Descrizione: Oggetto FastAPI che ci permette di fare le richieste HTTP e di gestire le rotte.</p><div class="CHeading">Parametri</div><ul><li><p>title: Titolo dell'API, può essere cambiato a piacimento.</p></li><li><p>version: Versione dell'API, può essere cambiata a piacimento.</p></li><li><p>root_path: Non può essere utilizzato per cambiare l'indirizzo delle route.</p></li></ul><div class="CHeading">Utilizzo</div><ul><li><p>app.add_middleware(): utilizza la funzione della classe FastAPI add_middleware per aggiungere il middleware CORS per gestire le richieste da origini diverse.</p><ul><li><p>Parametri:</p><ul><li><p>allow_origins: Lista di origini che possono fare richieste all'API.</p></li><li><p>allow_credentials: Permette l'invio di credenziali (cookie, autorizzazioni, etc.) nelle richieste.</p></li><li><p>allow_methods: Lista di metodi HTTP (GET, POST, PUT, DELETE, etc.) che possono essere utilizzati nelle richieste.</p></li><li><p>allow_headers: Lista di headers che possono essere utilizzati nelle richieste.</p></li></ul></li></ul></li><li><p>app.include_router(): questa riga di codice aggiunge tutte le rotte definite nell’oggetto object_router all’applicazione FastAPI principale tramite il metodo include_router</p><ul><li><p>Parametri:</p><ul><li><p>object_router.</p></li></ul></li></ul></li><li><p>app.get(&quot;/&quot;): questa riga di codice &quot;di prova&quot; definisce una rotta GET per la root dell'API, la quale ritorna un messaggio di benvenuto.</p></li></ul></div>
+</div>
+
+<a name="Functions"></a><a name="Topic8"></a><div class="CTopic TGroup LPython">
  <div class="CTitle">Functions</div>
 </div>
 
-<a name="@app.get"></a><a name="Topic9"></a><div class="CTopic TFunction LPython last">
- <div class="CTitle"><span class="Qualifier">@app.</span>&#8203;get()</div>
- <div id="NDPrototype9" class="NDPrototype WideForm"><div class="PSection PParameterSection PascalStyle"><div class="PParameterCells" data-WideColumnCount="3" data-NarrowColumnCount="2"><div class="PBeforeParameters" data-WideGridArea="1/1/2/2" data-NarrowGridArea="1/1/2/3" style="grid-area:1/1/2/2"><span class="SHMetadata">@app.get(</span></div><div class="PPropertyValue InFirstParameterColumn InLastParameterColumn" data-WideGridArea="1/2/2/3" data-NarrowGridArea="2/1/3/2" style="grid-area:1/2/2/3"><span class="SHMetadata">&quot;/&quot;</span></div><div class="PAfterParameters" data-WideGridArea="1/3/2/4" data-NarrowGridArea="3/1/4/3" style="grid-area:1/3/2/4"><span class="SHMetadata">)</span></div></div></div><div class="PSection PPlainSection"><span class="SHKeyword">def</span> read_root()</div></div>
- <div class="CBody"><div class="CHeading">Description</div><p>Gestisce la richiesta GET per la root dell'API.&nbsp; Returns: Un messaggio di benvenuto.</p></div>
+<a name="init_db"></a><a name="Topic9"></a><div class="CTopic TFunction LPython last">
+ <div class="CTitle">init_db()</div>
+ <div class="CBody"><p>Descrizione: Inizializza il database dell'applicazione utilizzando la funzione definita in database.py.</p></div>
 </div>
 
 </body></html>

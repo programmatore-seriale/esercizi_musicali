@@ -1,0 +1,4 @@
+venv\Scripts\activate # per attivare l'ambiente virtuale su Windows
+python -m uvicorn main:app --reload #per avviare il server FastAPI in modalità di sviluppo
+uvicorn main:app --reload #per avviare il progetto
+http://127.0.0.1:8000/docs/ per vedere le API con swagger

@@ -1,1 +1,1 @@
-﻿NDSearch.OnPrefixDataLoaded("py",["File"],[["py",,[[,"database.py",,,0,"File2:database.py:database.py"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("py",["File"],[["py",,[[,"database.py",,,0,"File2:database.py:database.py"],[,"main.py",,,0,"File2:main.py:main.py"]]]]);
