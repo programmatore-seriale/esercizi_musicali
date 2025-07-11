@@ -12,13 +12,25 @@ document.addEventListener("DOMContentLoaded", function() {
   const rightAnswerTextbox = document.getElementById("right-answer");
   /* ################################################################################ */
 
-  /* SEZIONE DALTONICI */
-  const icon = document.querySelector('.colorblind-friendly-colors');
-  if (icon) {
-    icon.addEventListener('click', function() {
-        document.body.classList.toggle('colorblind-mode');
-    });
-  }
+/** SEZIONE DALTONICI E DISLESSICI
+*   Questa sezione permette di attivare una modalità per i daltonici e per i dislessici
+*   banalmente, quando si clicca sull'icona, viene aggiunta una classe al body
+*   che quindi applica il realtivo stile CSS a tutti i propri figli
+*   cioè a tutto il documento
+*/
+const colorblindIcon = document.getElementById('colorblind-icon');
+const dyslexiaIcon = document.getElementById('dyslexia-icon');
+if (colorblindIcon) {
+  colorblindIcon.addEventListener('click', function() {
+    document.body.classList.toggle('colorblind-mode');
+  });
+}
+if (dyslexiaIcon) {
+  dyslexiaIcon.addEventListener('click', function() {
+    console.log("Toggling dyslexic mode");
+    document.body.classList.toggle('dyslexic-mode');
+  });
+}
 /* ######################################################### */
 
   let userComposers = []; // Array per memorizzare i compositori aggiunti dagli utenti

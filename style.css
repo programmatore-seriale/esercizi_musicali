@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/open-dyslexic');
 /* --- BASE --- */
 body {
     font-family: Arial, sans-serif;
@@ -16,6 +17,10 @@ body {
 body.colorblind-mode {
     background: #FFF !important;
     color: #000 !important;
+}
+body.dyslexic-mode, 
+body.dyslexic-mode *:not(.icon) {
+    font-family: 'OpenDyslexic', 'Open-Dyslexic', 'OpenDyslexicAlta', Arial, sans-serif !important;
 }
 
 /* --- TESTI PRINCIPALI --- */
@@ -88,24 +93,27 @@ button:hover, .actions button:hover, #startBtn:hover, .styled-btn:hover { /* Gli
     background-color: #c0392b;
 }
 
-/* --- HOME ICON & COLORBLIND ICON --- */
-.home-link, .colorblind-friendly-colors {
+/* --- ICONE --- */
+.icon{
     position: absolute;
     top: 20px;
     z-index: 100;
     display: block;
-}
-.home-link { left: 20px; }
-.colorblind-friendly-colors { right: 20px; }
-.colorblind-friendly-colors:hover { cursor: pointer; }
-.fa-solid.fa-house, .fa.fa-low-vision {
     font-size: 2em;
     color: #776e65;
 }
-body.colorblind-mode .fa-solid.fa-house,
-body.colorblind-mode .fa.fa-low-vision {
+body.colorblind-mode .icon{
     color: #0072B2 !important;
 }
+body.dyslexic-mode #dyslexia-icon {
+    color: #000 !important;
+}
+.icon:hover{
+  cursor: pointer;  
+}
+#home-icon { left: 20px;}
+#colorblind-icon { right: 20px;}
+#dyslexia-icon { right: 70px;}
 
 /* --- MEMORY --- */
 .grid-container {

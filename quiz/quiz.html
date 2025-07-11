@@ -6,19 +6,22 @@
     <!-- Da inserire nel head di tutti i file del quiz -->
     <link rel="stylesheet" href="../style.css"> <!-- Per applicare lo stile CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> <!-- Per far funzionare l'icona di home -->
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/open-dyslexic"> <!-- Per applicare il font OpenDyslexic -->
     <link rel="icon" type="image/png" href="../immagini/logo.png" alt="Logo Esercizi Musicali"> <!-- Icona del sito -->
     <!-- ############################################# -->
 </head>
 <body>
     <!-- Intestazione da usare in tutte le pagine del quiz -->
+    <!-- Icone prese da fontawesone.com-->
     <a href="../index.html" class="home-link" aria-label="Torna alla home">
-        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        <i class="fa-solid fa-house icon" id="home-icon" aria-hidden="true"></i>
         <span class="sr-only">Home</span>
     </a>
     <a href="home.html" class="quiz-link" aria-label="Torna alla pagina principale del quiz">
         <img src="../immagini/intestazione.png" alt="Logo Esercizi Musicali" class="heading">
     </a>
-    <i class="fa fa-low-vision colorblind-friendly-colors" aria-label="Colori per daltonici"></i>
+    <i class="fa fa-low-vision icon" id="colorblind-icon" aria-label="Colori per daltonici" title="colori per daltonici"></i>
+    <i class="fa-solid fa-book-open-reader icon" id="dyslexia-icon" aria-label="Font per dislessici" title="testo per dislessici"></i>
     <!-- ################################################# -->
     <div class="score-container">
         <h1 class="score" id="score" tabindex="0" aria-live="polite"> <!-- Aria polite, annuncio non invasivo -->

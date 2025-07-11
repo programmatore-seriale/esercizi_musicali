@@ -12,12 +12,24 @@ const next_button = document.getElementById('next-button');
 const resultDiv = document.getElementById('result');
 /* ########################################################### */
 
-/* SEZIONE DALTONICI */
-const icon = document.querySelector('.colorblind-friendly-colors');
+/** SEZIONE DALTONICI E DISLESSICI
+*   Questa sezione permette di attivare una modalità per i daltonici e per i dislessici
+*   banalmente, quando si clicca sull'icona, viene aggiunta una classe al body
+*   che quindi applica il realtivo stile CSS a tutti i propri figli
+*   cioè a tutto il documento
+*/
 document.addEventListener('DOMContentLoaded', function() {
-  if (icon) {
-    icon.addEventListener('click', function() {
+  const colorblindIcon = document.getElementById('colorblind-icon');
+  const dyslexiaIcon = document.getElementById('dyslexia-icon');
+  if (colorblindIcon) {
+    colorblindIcon.addEventListener('click', function() {
       document.body.classList.toggle('colorblind-mode');
+    });
+  }
+  if (dyslexiaIcon) {
+    dyslexiaIcon.addEventListener('click', function() {
+      console.log("Toggling dyslexic mode");
+      document.body.classList.toggle('dyslexic-mode');
     });
   }
 });
